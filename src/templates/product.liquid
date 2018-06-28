@@ -1,0 +1,59 @@
+<div class="overflow-hidden main-height">
+  <div class="left main-height w60p">
+    {% for image in product.images %}
+      <img class="product-image w100p block" src="{{ image | img_url: '1024x' }}" />
+    {% endfor %}
+  </div>
+  <div class="left w40p pt2">
+    <div class="w60p mx-auto">
+      <h2 class="h1 text-normal mb1">{{ product.title }}</h2>
+      <p class="mt0 mb2 gray">{{ product.price | money_without_trailing_zeros }}</p>
+      <form class="js-cart-form" action="/cart/add" method="post" enctype="multipart/form-data">
+        <div class="flex items-center mb1">
+          <div class="relative w50p">
+            <div class="placeholder p1 border border-smoke flex items-center justify-center bembo">
+              <span>Size</span>
+              <div class="arrow-down arrow-down-black"></div>
+            </div>
+            <select name="id" class="absolute t0 l0 w100p h100p o0p pointer">
+              <option value="Size" disabled selected>Size</option>
+              {% for variant in product.variants %}
+                {% if variant.available == true %}
+                  <option value="{{ variant.id }}">
+                    {{ variant.title }}
+                  </option>
+                {% else %}
+                  <option disabled="disabled">
+                    {{ variant.title }} - sold out!
+                  </option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+          <span class="pl1"></span>
+          <div class="relative w50p">
+            <div class="placeholder p1 border border-smoke flex items-center justify-center bembo">
+              <span>Qty</span>
+              <div class="arrow-down arrow-down-black"></div>
+            </div>
+            <select name="quantity" class="absolute t0 l0 w100p h100p o0p pointer">
+              <option value="Qty" disabled selected>Qty</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+        </div>
+        <input
+          type="submit"
+          name="add"
+          id="add"
+          value="Add to Cart"
+          class="bg-black white h4 py1 px2 bembo no-underline w100p pointer no-outline"
+        />
+        <span class="border-bottom mt3 bembo mt3 inline-block" style="padding: 0 .5rem .25rem">Overview</span><br />
+        <p>{{ product.description }}</p>
+      </form>
+    </div>
+  </div>
+</div>
