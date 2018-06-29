@@ -28,7 +28,7 @@
   </div>
 </div>
 <div class="grid">
-  <div class="index-row overflow-hidden py6">
+  <div class="index-row overflow-hidden pt6">
     {% for product in collections.all.products %}
       <div class="index-item border-box w50p left mb10">
         <a href="{{ product.url }}" class="inline-block no-underline black">
@@ -49,5 +49,10 @@
         </a>
       </div>
     {% endfor %}
+  </div>
+  <div class="text-center">
+    <a class="border border-smoke py1 px2 bembo black no-underline" href="">
+      View the Full Collection
+    </a>
   </div>
 </div>

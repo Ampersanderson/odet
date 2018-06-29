@@ -7,7 +7,7 @@
       {{ collection.description }}
     </div>
   </div>
-  <div class="collection-row text-center overflow-hidden py6">
+  <div class="collection-row text-center overflow-hidden pt6">
     {% for product in collection.products %}
       <div class="collection-item w33p left mb10 border-box">
         <a href="{{ product.url }}" class="inline-block no-underline black">
@@ -28,5 +28,10 @@
         </a>
       </div>
     {% endfor %}
+  </div>
+  <div class="text-center">
+    <a class="border border-smoke py1 px2 bembo black no-underline" href="">
+      Read the Essays
+    </a>
   </div>
 </div>

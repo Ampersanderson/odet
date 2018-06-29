@@ -1,0 +1,44 @@
+<footer class="bg-tan p2 height-15">
+  <div class="flex">
+    <div class="overflow-hidden w90p left mb1">
+      <nav class="w20p left py1">
+        <p class="bembo bronze mt0 pb1">Products</p>
+        {% for products in linklists.products-menu.links %}
+          <a class="link" href="{{ products.url }}">{{ products.title }}</a><br />
+        {% endfor %}
+      </nav>
+      <nav class="w20p left py1">
+        <p class="bembo bronze mt0 pb1">About</p>
+        {% for about in linklists.about-menu.links %}
+          <a class="link" href="{{ about.url }}">{{ about.title }}</a><br />
+        {% endfor %}
+      </nav>
+      <nav class="w20p left py1">
+        <p class="bembo bronze mt0 pb1">Connect</p>
+        {% for connect in linklists.connect-menu.links %}
+          <a class="link" href="{{ connect.url }}">{{ connect.title }}</a><br />
+        {% endfor %}
+      </nav>
+      <nav class="w20p left py1">
+        <p class="bembo bronze mt0 pb1">Info</p>
+        {% for info in linklists.info-menu.links %}
+          <a class="link" href="{{ info.url }}">{{ info.title }}</a><br />
+        {% endfor %}
+      </nav>
+    </div>
+    <div class="overflow-hidden w30p left pt1">
+      {% form 'customer' %}
+        <input id="contact_tags" name="contact[tags]" type="hidden" value="prospect,newsletter" />
+        <div class="newsletter-signup relative flex items-center">
+          <input id="contact_email" class="flex-1" placeholder="Subscribe" name="contact[email]" type="text" />
+          <button type="submit" class="h3 bembo">
+            &rarr;
+          </button>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+  <p class="bronze h5">
+    © 2018 Matthew Anderson. All rights reserved.
+  </p>
+</footer>

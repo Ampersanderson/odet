@@ -21,108 +21,13 @@
 </head>
 
 <body>
-  <header class="site-nav fixed z9 t0 l0 w100p height-5 bg-white">
-    <div class="flex items-center h100p px1">
-      <nav class="flex items-center w100p">
-        <div class="flex-1 basis-0">
-          {% for main in linklists.main-menu.links %}
-            <a class="link p1" href="{{ main.url }}">{{ main.title }}</a>
-          {% endfor %}
-        </div>
-        <h1 class="m0">
-          <a href="/">
-            <svg xmlns="http://www.w3.org/2000/svg" width="84" height="24" viewBox="0 0 84 24">
-              <path d="M3.5 24L0 20.6 0 10.3 3.5 6.9 13.7 6.9 17.2 10.3 17.2 20.6 13.7 24 3.5 24ZM13.7 20.6L13.7 10.3 3.3 10.3 3.3 20.6 13.7 20.6ZM25 24L21.5 20.6 21.5 10.3 25 6.9 35.4 6.9 35.4 0 38.9 0 38.9 20.6 35.4 24 25 24ZM35.3 20.6L35.3 10.3 24.9 10.3 24.9 20.6 35.3 20.6ZM47 24L43.5 20.6 43.5 10.3 47 6.9 60.9 6.9 60.9 10.3 47 10.3 47 13.7 60.9 13.7 60.9 17.1 47 17.1 47 20.6 60.9 20.6 60.9 24 47 24ZM66.7 24L66.7 0 70.1 0 70.1 6.9 84 6.9 84 10.3 70.1 10.3 70.1 24 66.7 24Z"/>
-            </svg>
-          </a>
-        </h1>
-        <div class="flex items-center justify-end flex-1 basis-0 text-right">
-          {% for secondary in linklists.footer.links %}
-            <a class="link p1" href="{{ secondary.url }}">{{ secondary.title }}</a>
-          {% endfor %}
-          <a class="js-cart-trigger link p1" href="#">
-            <div class="flex items-center">
-              <span>Cart</span>
-              <span class="js-header-count cart-count circle text-center bg-black white bembo block hide">
-                {{ cart.items.length }}
-              </span>
-            </div>
-          </a>
-        </div>
-      </nav>
-    </div>
-  </header>
+  {% include 'header' %}
   <div class="site-wrapper h100p">
-    <div class="main-height pt5">
+    <div class="main-height main-padding">
       {{ content_for_layout }}
     </div>
-    <footer class="bg-tan p2 height-15">
-      <div class="flex">
-        <div class="overflow-hidden w90p left mb1">
-          <nav class="w20p left py1">
-            <p class="bembo bronze mt0 pb1">Products</p>
-            {% for products in linklists.products-menu.links %}
-              <a class="link" href="{{ footer.url }}">{{ products.title }}</a><br />
-            {% endfor %}
-          </nav>
-          <nav class="w20p left py1">
-            <p class="bembo bronze mt0 pb1">About</p>
-            {% for about in linklists.about-menu.links %}
-              <a class="link" href="{{ footer.url }}">{{ about.title }}</a><br />
-            {% endfor %}
-          </nav>
-          <nav class="w20p left py1">
-            <p class="bembo bronze mt0 pb1">Connect</p>
-            {% for connect in linklists.connect-menu.links %}
-              <a class="link" href="{{ footer.url }}">{{ connect.title }}</a><br />
-            {% endfor %}
-          </nav>
-          <nav class="w20p left py1">
-            <p class="bembo bronze mt0 pb1">Info</p>
-            {% for info in linklists.info-menu.links %}
-              <a class="link" href="{{ footer.url }}">{{ info.title }}</a><br />
-            {% endfor %}
-          </nav>
-        </div>
-        <div class="overflow-hidden w30p left pt1">
-          {% form 'customer' %}
-            <input id="contact_tags" name="contact[tags]" type="hidden" value="prospect,newsletter" />
-            <div class="newsletter-signup relative flex items-center">
-              <input id="contact_email" class="flex-1" placeholder="Subscribe" name="contact[email]" type="text" />
-              <button type="submit" class="h3 bembo">
-                &rarr;
-              </button>
-            </div>
-          {% endform %}
-        </div>
-      </div>
-      <p class="bronze h5">
-        © 2018 Matthew Anderson. All rights reserved.
-      </p>
-    </footer>
+    {% include 'footer' %}
   </div>
-  <div class="cart-wrapper fixed h100p t0 r0 bg-black white z10 scroll-y">
-    <div class="flex flex-column h100p">
-      <div class="js-cart-trigger text-right p2 pointer">
-        <svg class="inline-block v-middle" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-          <polygon points="7.5 8.5 1 14.9 0 13.9 6.5 7.5 0 1 1 0 7.5 6.5 14 0 15 1 8.5 7.5 15 14 14 15" fill="#6D6D6D"/>
-        </svg>
-      </div>
-      <div class="flex-1 px3">
-        <p class="js-sidebar-count white bembo mb2">0 Items in Cart</p>
-        <p class="js-cart-error hide mt0 mb2 red border border-red p1 h5"></p>
-        <div class="cart-items"></div>
-        <div class="js-sidebar-subtotal flex items-center justify-between mt3 pt1 border-top border-black">
-          <span>Subtotal</span>
-          <span class="js-cart-total bembo"></span>
-        </div>
-      </div>
-      <div class="py2 px3">
-        <a href="/cart" class="flex justify-center bg-white py1 px2 bembo black no-underline">
-          View Cart
-        </a>
-      </div>
-    </div>
-  </div>
+  {% include 'cart' %}
 </body>
 </html>
