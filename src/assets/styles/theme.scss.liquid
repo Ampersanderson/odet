@@ -153,16 +153,34 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 .max-w500 { max-width: 500px; }
 
 .grid {
-  max-width: 1440px;
+  width: 75%;
   margin: 0 auto;
-  padding: 150px;
   box-sizing: border-box;
+  @media screen and (min-width: $break-md) {
+    width: 100%;
+    max-width: 1440px;
+    padding: 150px;
+  }
 }
 
 .collection-row { margin: 0 -5%; }
 .collection-item { padding: 0 5%; }
-.index-row { margin: 0 -9%; }
-.index-item { padding: 0 9%; }
+
+.index-row {
+  @media screen and (min-width: $break-md) {
+    margin: 0 -9%;
+  }
+}
+
+.index-item {
+  margin: 0 auto 5rem;
+  @media screen and (min-width: $break-md) {
+    padding: 0 9%;
+    float: left;
+    width: 50%;
+    margin: 0 0 10rem;
+  }
+}
 
 .white { color: #fff; }
 .bg-white { background-color: #fff; }
@@ -205,7 +223,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 .home-hero { height: calc(100vh - 190px); }
 .main-height { min-height: calc(100vh - 24rem); }
 .main-padding {
-  padding-top: 4rem;
+  padding-top: 3rem;
   @media screen and (min-width: $break-md) {
     padding-top: 5rem;
   }
@@ -268,7 +286,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   transform: translateX(0);
   -webkit-transition: transform .2s;
   transition: transform .2s;
-  height: 4rem;
+  height: 3rem;
   @media screen and (min-width: $break-md) {
     height: 5rem;
   }
@@ -339,5 +357,13 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   transition: transform .2s;
   &.open {
     transform: translateX(0%);
+  }
+}
+
+.main-description {
+  width: 75%;
+  @media screen and (min-width: $break-md) {
+    width: 100%;
+    max-width: 500px;
   }
 }

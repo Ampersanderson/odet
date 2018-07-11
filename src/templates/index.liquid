@@ -9,7 +9,7 @@
     <span>94</span>
   </div>
   <div class="flex-1 flex items-center">
-    <div class="max-w500 mx-auto w100p">
+    <div class="main-description mx-auto w100p">
       {{ collection.description }}
       <div class="pt2">
         {% for main in linklists.main-menu.links %}
@@ -30,11 +30,11 @@
 <div class="grid">
   <div class="index-row overflow-hidden pt6">
     {% for product in collections.all.products %}
-      <div class="index-item border-box w50p left mb10">
+      <div class="index-item border-box">
         <a href="{{ product.url }}" class="inline-block no-underline black">
           {% for image in product.images %}
             {% if forloop.first == true %}
-              <img class="block" src="{{ image | img_url: '500x' }}" />
+              <img class="block" src="{{ image | img_url: '750x' }}" />
             {% endif %}
           {% endfor %}
           <div class="flex justify-between">
