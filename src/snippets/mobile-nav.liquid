@@ -5,7 +5,7 @@
     </svg>
   </div>
   <nav class="py1">
-    <p class="header inline-block bembo mt0 mb2 px1">Products</p>
+    <p class="with-underline inline-block bembo mt0 mb2 px1">Products</p>
     {% for products in linklists.products-menu.links %}
       <a class="link block h5" href="{{ products.url }}">
         {{ products.title }}
@@ -14,7 +14,7 @@
     {% endfor %}
   </nav>
   <nav class="py1">
-    <p class="header inline-block bembo mt0 mb2 px1">About</p>
+    <p class="with-underline inline-block bembo mt0 mb2 px1">About</p>
     {% for about in linklists.about-menu.links %}
       <a class="link block h5" href="{{ about.url }}">
         {{ about.title }}
@@ -23,7 +23,7 @@
     {% endfor %}
   </nav>
   <nav class="py1">
-    <p class="header inline-block bembo mt0 mb2 px1">Connect</p>
+    <p class="with-underline inline-block bembo mt0 mb2 px1">Connect</p>
     {% for connect in linklists.connect-menu.links %}
       <a class="link block h5" href="{{ connect.url }}">
         {{ connect.title }}
@@ -32,7 +32,7 @@
     {% endfor %}
   </nav>
   <nav class="py1">
-    <p class="header inline-block bembo mt0 mb2 px1">Info</p>
+    <p class="with-underline inline-block bembo mt0 mb2 px1">Info</p>
     {% for info in linklists.info-menu.links %}
       <a class="link block h5" href="{{ info.url }}">
         {{ info.title }}
