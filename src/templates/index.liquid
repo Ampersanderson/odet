@@ -9,16 +9,18 @@
     <span>94</span>
   </div>
   <div class="flex-1 flex items-center">
-    <div class="main-description mx-auto w100p">
-      {{ collection.description }}
-      <div class="pt2">
-        {% for main in linklists.main-menu.links %}
-          {% if forloop.first == true %}
-            <a class="link-with-underline bembo" href="{{ main.url }}">
-              {{ main.title }}
-            </a>
-          {% endif %}
-        {% endfor %}
+    <div class="grid">
+      <div class="main-description mx-auto w100p">
+        {{ collection.description }}
+        <div class="pt2">
+          {% for main in linklists.main-menu.links %}
+            {% if forloop.first == true %}
+              <a class="link-with-underline bembo" href="{{ main.url }}">
+                {{ main.title }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
@@ -50,8 +52,8 @@
       </div>
     {% endfor %}
   </div>
-  <div class="text-center">
-    <a class="border border-smoke py1 px2 bembo black no-underline" href="">
+  <div class="text-center pb6">
+    <a class="border border-smoke py1 px2 bembo black no-underline" href="/collections/the-collection">
       View the Full Collection
     </a>
   </div>

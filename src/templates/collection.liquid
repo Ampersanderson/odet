@@ -1,7 +1,7 @@
 <div class="grid pt8">
   <div class="flex items-center">
-    <div class="max-w500 mx-auto w100p">
-      <div class="text-center">
+    <div class="main-description mx-auto w100p">
+      <div class="text-center mb3">
         <span class="bembo with-underline">{{ collection.title }}</span>
       </div>
       {{ collection.description }}
@@ -9,7 +9,7 @@
   </div>
   <div class="collection-row text-center overflow-hidden pt6">
     {% for product in collection.products %}
-      <div class="collection-item w33p left mb10 border-box">
+      <div class="collection-item border-box">
         <a href="{{ product.url }}" class="inline-block no-underline black">
           {% for image in product.images %}
             {% if forloop.first == true %}
@@ -29,7 +29,7 @@
       </div>
     {% endfor %}
   </div>
-  <div class="text-center">
+  <div class="text-center pb6">
     <a class="border border-smoke py1 px2 bembo black no-underline" href="">
       Read the Essays
     </a>
