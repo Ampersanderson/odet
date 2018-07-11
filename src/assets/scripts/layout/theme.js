@@ -4,6 +4,8 @@ import "../../styles/fonts.scss.liquid";
 
 ($ => {
   const $body = $("body");
+  const $mobileNav = $(".mobile-nav");
+  const $mobileNavLink = $(".mobile-nav a");
   const $cart = $(".cart-items");
   const $trigger = $(".js-cart-trigger");
   const $headerCount = $(".js-header-count");
@@ -12,6 +14,8 @@ import "../../styles/fonts.scss.liquid";
   const $cartTotal = $(".js-cart-total");
   const $cartForm = $(".js-cart-form");
   const $cartError = $(".js-cart-error");
+  const $mobileNavOpen = $(".js-mobile-nav-open");
+  const $mobileNavClose = $(".js-mobile-nav-close");
 
   $trigger.on("click", e => {
     e.preventDefault();
@@ -241,6 +245,21 @@ import "../../styles/fonts.scss.liquid";
 
   $(".product-image").each(function() {
     $(this).bind("load", () => $(this).addClass("show"));
+  });
+
+  $mobileNavOpen.on("click", e => {
+    $body.addClass("overflow-hidden");
+    $mobileNav.addClass("open");
+  });
+
+  $mobileNavClose.on("click", e => {
+    $body.removeClass("overflow-hidden");
+    $mobileNav.removeClass("open");
+  });
+
+  $mobileNavLink.on("click", e => {
+    $body.removeClass("overflow-hidden");
+    $mobileNav.removeClass("open");
   });
 
   // On page load

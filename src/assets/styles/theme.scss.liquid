@@ -10,7 +10,7 @@
 $break-sm: 480px;
 $break-md: 768px;
 $break-lg: 1048px;
-$break-lg: 1440px;
+$break-xl: 1440px;
 
 html, body {
   margin: 0;
@@ -232,7 +232,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
      font-family: "Bembo Italic";
     }
     ::-moz-placeholder {
-     font-family: "Bembo Italic";color: pink;
+     font-family: "Bembo Italic";
     }
     :-ms-input-placeholder {
      font-family: "Bembo Italic";
@@ -330,5 +330,18 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   opacity: 0;
   &.show {
     opacity: 1;
+  }
+}
+
+.mobile-nav {
+  transform: translateX(-100%);
+  -webkit-transition: transform .2s;
+  transition: transform .2s;
+  &.open {
+    transform: translateX(0%);
+  }
+  .header {
+    padding-bottom: .25rem;
+    border-bottom: 1px solid #D7DBDF;
   }
 }
