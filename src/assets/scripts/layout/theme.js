@@ -243,6 +243,25 @@ import "../../styles/fonts.scss.liquid";
     .last()
     .addClass("m0");
 
+  $(".odet-page")
+    .find("h5")
+    .addClass("odet-heading");
+
+  $(".odet-page")
+    .find("img")
+    .each(function() {
+      const $image = $(this);
+      const alt = $image.attr("alt");
+
+      if ($image.parent().is("p")) {
+        $image.unwrap();
+        $image.wrap(
+          '<div class="js-img-wrapper text-center"><div class="inline-block"></div></div>'
+        );
+        $image.after(`<span class="block text-left mx-auto">${alt}</span>`);
+      }
+    });
+
   $(".product-image").each(function() {
     $(this).bind("load", () => $(this).addClass("show"));
   });

@@ -339,7 +339,8 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 .with-underline {
   display: inline-block;
   border-bottom: 1px solid #D7DBDF;
-  line-height: 1.5;
+  padding: 0 .75rem;
+  line-height: 1.6;
 }
 
 .placeholder {
@@ -378,8 +379,48 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   }
 }
 
+.odet-heading {
+  font-size: 1.25rem;
+  font-family: 'Bembo';
+  font-weight: normal;
+  display: inline-block;
+  border-bottom: 1px solid #D7DBDF;
+  margin: 3rem 0;
+  padding: 0 .75rem;
+  line-height: 1.6;
+}
+
 footer {
   a {
     margin-bottom: .25rem;
+  }
+}
+
+.odet-page {
+  text-align: center;
+  p {
+    padding: 0 2rem;
+    text-align: left;
+    max-width: 500px;
+    margin: 0 auto;
+    @media screen and (min-width: $break-md) {
+      padding: 0;
+    }
+  }
+  img {
+    zoom: 50%;
+  }
+  .js-img-wrapper {
+    color: #B2B2B2;
+    margin: 3rem 0 1rem;
+    @media screen and (min-width: $break-md) {
+      margin: 9rem 0 6rem;
+    }
+    span {
+      padding-left: .5rem;
+      @media screen and (min-width: $break-md) {
+        padding-left: 0;
+      }
+    }
   }
 }
