@@ -66,6 +66,7 @@ select { -webkit-appearance: menulist-button; }
 .text-normal { font-weight: normal; }
 .no-underline { text-decoration: none; }
 .no-outline { outline: none; }
+.break-word { word-wrap: break-word; }
 
 .hide { display: none; }
 .hide-md {
@@ -232,7 +233,12 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 }
 
 .home-hero { height: calc(100vh - 190px); }
-.main-height { min-height: calc(100vh - 24rem); }
+.main-height {
+  min-height: calc(100vh - 3rem);
+  @media screen and (min-width: $break-md) {
+    min-height: calc(100vh - 24rem);
+  }
+}
 .main-padding {
   padding-top: 3rem;
   @media screen and (min-width: $break-md) {
@@ -303,11 +309,14 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   }
 }
 .cart-wrapper {
-  width: 50%;
+  width: 90%;
   transform: translateX(100%);
   -webkit-transition: transform .2s;
   transition: transform .2s;
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: $break-md) {
+    width: 50%;
+  }
+  @media screen and (min-width: $break-lg) {
     width: calc(30% + 1px);
   }
 }
@@ -315,7 +324,10 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 .cart-open {
   .site-wrapper,
   .site-nav {
-    transform: translateX(-50%);
+    transform: translateX(-90%);
+    @media screen and (min-width: $break-md) {
+      transform: translateX(-50%);
+    }
     @media screen and (min-width: $break-lg) {
       transform: translateX(-30%);
     }
@@ -398,7 +410,10 @@ footer {
 
 .odet-page {
   text-align: center;
-  p {
+  a {
+    color: #222;
+  }
+  p, ul {
     padding: 0 2rem;
     text-align: left;
     max-width: 500px;
@@ -422,5 +437,14 @@ footer {
         padding-left: 0;
       }
     }
+  }
+}
+
+.cart-padding {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  @media screen and (min-width: $break-md) {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
