@@ -4,13 +4,13 @@
   <div class="w100p h100p bg-cover bg-center bg-no-repeat" style="background-image: url({{ collection.image | img_url: '1440x768' }})"></div>
 </div>
 <div class="main-height flex flex-column">
-  <div class="flex justify-between bembo p2 h2">
+  <div class="pad-index-numbers flex justify-between bembo h2">
     <span>19</span>
     <span>94</span>
   </div>
   <div class="flex-1 flex items-center">
     <div class="grid">
-      <div class="main-description mx-auto w100p">
+      <div class="main-description mx-auto w100p py10">
         {{ collection.description }}
         <div class="pt2">
           {% for main in linklists.main-menu.links %}
@@ -24,13 +24,13 @@
       </div>
     </div>
   </div>
-  <div class="flex justify-between bembo p2 h2">
+  <div class="pad-index-numbers flex justify-between bembo h2">
     <span>20</span>
     <span>18</span>
   </div>
 </div>
 <div class="grid">
-  <div class="index-row overflow-hidden pt6">
+  <div class="index-row overflow-hidden pt10">
     {% for product in collections.all.products %}
       <div class="index-item border-box">
         <a href="{{ product.url }}" class="inline-block no-underline black">
@@ -52,7 +52,7 @@
       </div>
     {% endfor %}
   </div>
-  <div class="text-center pb6">
+  <div class="text-center pb10">
     <a class="border border-smoke py1 px2 bembo black no-underline" href="/collections/the-collection">
       View the Full Collection
     </a>

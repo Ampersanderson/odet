@@ -154,13 +154,14 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 .max-w500 { max-width: 500px; }
 
 .grid {
-  width: 75%;
+  width: 85%;
   margin: 0 auto;
   box-sizing: border-box;
   @media screen and (min-width: $break-md) {
     width: 100%;
     max-width: 1440px;
-    padding: 150px;
+    padding-left: 150px;
+    padding-right: 150px;
   }
 }
 
@@ -225,6 +226,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   color: #222222;
   text-decoration: none;
 }
+
 .link-with-underline {
   color: #222222;
   display: inline-block;
@@ -232,13 +234,20 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   text-decoration: none;
 }
 
-.home-hero { height: calc(100vh - 190px); }
+.home-hero {
+  height: calc(100vh - 7rem);
+  @media screen and (min-width: $break-md) {
+    height: calc(100vh - 11rem);
+  }
+}
+
 .main-height {
   min-height: calc(100vh - 3rem);
   @media screen and (min-width: $break-md) {
     min-height: calc(100vh - 24rem);
   }
 }
+
 .main-padding {
   padding-top: 3rem;
   @media screen and (min-width: $break-md) {
@@ -414,7 +423,6 @@ footer {
     color: #222;
   }
   p, ul {
-    padding: 0 2rem;
     text-align: left;
     max-width: 500px;
     margin: 0 auto;
@@ -446,5 +454,12 @@ footer {
   @media screen and (min-width: $break-md) {
     padding-left: 3rem;
     padding-right: 3rem;
+  }
+}
+
+.pad-index-numbers {
+  padding: 1rem;
+  @media screen and (min-width: $break-md) {
+    padding: 2rem;
   }
 }
