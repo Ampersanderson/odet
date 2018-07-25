@@ -1,0 +1,10 @@
+{% if settings.show_announcement_banner == true %}
+  <div class="announcement fixed t0 l0 r0 z9 height-2 text-center">
+    <div class="bg-black white flex items-center justify-center h100p px1">
+      <p class="m0 h5">{{ settings.announcement_banner }}</p>
+      <a class="h5 white inline-block" href="{{ settings.announce_banner_link }}">
+        {{ settings.announcement_banner_link_text }}
+      </a>
+    </div>
+  </div>
+{% endif %}
