@@ -7,9 +7,9 @@
       </div>
     </div>
   </div>
-  <div class="index-row overflow-hidden pt10">
+  <div class="collection-row text-center overflow-hidden pt6">
     {% for product in collection.products %}
-      <div class="index-item border-box">
+      <div class="collection-item border-box">
         <a href="{{ product.url }}" class="inline-block no-underline black">
           {% for image in product.images %}
             {% if forloop.first == true %}

@@ -1,23 +1,59 @@
-<header class="site-nav fixed z9 l0 w100p bg-white show-md">
-  <div class="flex items-center h100p px1">
-    <nav class="flex items-center w100p">
-      <div class="flex-1 basis-0">
-        {% for main in linklists.main-menu.links %}
-          <a class="link p1" href="{{ main.url }}">{{ main.title }}</a>
-        {% endfor %}
+<header class="js-header fixed z9 l0 w100p bg-white show-md">
+  {% include 'announcement' %}
+  <div class="site-nav">
+    <div class="flex items-center h100p px1">
+      <nav class="flex items-center w100p">
+        <div class="flex-1 basis-0">
+          {% for main in linklists.main-menu.links %}
+            <a class="link p1" href="{{ main.url }}">{{ main.title }}</a>
+          {% endfor %}
+        </div>
+        <h1 class="m0">
+          <a href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="84" height="24" viewBox="0 0 84 24">
+              <path d="M3.5 24L0 20.6 0 10.3 3.5 6.9 13.7 6.9 17.2 10.3 17.2 20.6 13.7 24 3.5 24ZM13.7 20.6L13.7 10.3 3.3 10.3 3.3 20.6 13.7 20.6ZM25 24L21.5 20.6 21.5 10.3 25 6.9 35.4 6.9 35.4 0 38.9 0 38.9 20.6 35.4 24 25 24ZM35.3 20.6L35.3 10.3 24.9 10.3 24.9 20.6 35.3 20.6ZM47 24L43.5 20.6 43.5 10.3 47 6.9 60.9 6.9 60.9 10.3 47 10.3 47 13.7 60.9 13.7 60.9 17.1 47 17.1 47 20.6 60.9 20.6 60.9 24 47 24ZM66.7 24L66.7 0 70.1 0 70.1 6.9 84 6.9 84 10.3 70.1 10.3 70.1 24 66.7 24Z"/>
+            </svg>
+          </a>
+        </h1>
+        <div class="flex items-center justify-end flex-1 basis-0 text-right">
+          {% for secondary in linklists.footer.links %}
+            <a class="link p1" href="{{ secondary.url }}">{{ secondary.title }}</a>
+          {% endfor %}
+          <a class="js-cart-trigger link p1" href="#">
+            <div class="flex items-center">
+              <span>Cart</span>
+              <span class="js-header-count cart-count circle text-center bg-black white bembo block hide">
+                {{ cart.items.length }}
+              </span>
+            </div>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+<header class="js-header fixed z9 t0 l0 w100p bg-white hide-md">
+  {% include 'announcement' %}
+  <div class="site-nav">
+    <div class="flex items-center h100p px1">
+      <div class="flex-1 w33p">
+        <svg class="js-mobile-nav-open inline-block pointer" xmlns="http://www.w3.org/2000/svg" width="21" viewBox="0 0 33 23">
+          <g fill="#222">
+            <rect y="10.2" width="33" height="2.6"/>
+            <rect width="33" height="2.6"/>
+            <rect y="20.4" width="33" height="2.6"/>
+          </g>
+        </svg>
       </div>
-      <h1 class="m0">
-        <a href="/">
-          <svg xmlns="http://www.w3.org/2000/svg" width="84" height="24" viewBox="0 0 84 24">
+      <div class="flex-1 w33p text-center">
+        <a class="inline-block v-top" href="/">
+          <svg class="inline-block v-top" xmlns="http://www.w3.org/2000/svg" width="84" height="24" viewBox="0 0 84 24">
             <path d="M3.5 24L0 20.6 0 10.3 3.5 6.9 13.7 6.9 17.2 10.3 17.2 20.6 13.7 24 3.5 24ZM13.7 20.6L13.7 10.3 3.3 10.3 3.3 20.6 13.7 20.6ZM25 24L21.5 20.6 21.5 10.3 25 6.9 35.4 6.9 35.4 0 38.9 0 38.9 20.6 35.4 24 25 24ZM35.3 20.6L35.3 10.3 24.9 10.3 24.9 20.6 35.3 20.6ZM47 24L43.5 20.6 43.5 10.3 47 6.9 60.9 6.9 60.9 10.3 47 10.3 47 13.7 60.9 13.7 60.9 17.1 47 17.1 47 20.6 60.9 20.6 60.9 24 47 24ZM66.7 24L66.7 0 70.1 0 70.1 6.9 84 6.9 84 10.3 70.1 10.3 70.1 24 66.7 24Z"/>
           </svg>
         </a>
-      </h1>
-      <div class="flex items-center justify-end flex-1 basis-0 text-right">
-        {% for secondary in linklists.footer.links %}
-          <a class="link p1" href="{{ secondary.url }}">{{ secondary.title }}</a>
-        {% endfor %}
-        <a class="js-cart-trigger link p1" href="#">
+      </div>
+      <div class="flex-1 w33p flex justify-end">
+        <a class="js-cart-trigger link" href="#">
           <div class="flex items-center">
             <span>Cart</span>
             <span class="js-header-count cart-count circle text-center bg-black white bembo block hide">
@@ -26,36 +62,6 @@
           </div>
         </a>
       </div>
-    </nav>
-  </div>
-</header>
-<header class="site-nav fixed z9 t0 l0 w100p bg-white hide-md">
-  <div class="flex items-center h100p px1">
-    <div class="flex-1 w33p">
-      <svg class="js-mobile-nav-open inline-block pointer" xmlns="http://www.w3.org/2000/svg" width="21" viewBox="0 0 33 23">
-        <g fill="#222">
-          <rect y="10.2" width="33" height="2.6"/>
-          <rect width="33" height="2.6"/>
-          <rect y="20.4" width="33" height="2.6"/>
-        </g>
-      </svg>
-    </div>
-    <div class="flex-1 w33p text-center">
-      <a class="inline-block v-top" href="/">
-        <svg class="inline-block v-top" xmlns="http://www.w3.org/2000/svg" width="84" height="24" viewBox="0 0 84 24">
-          <path d="M3.5 24L0 20.6 0 10.3 3.5 6.9 13.7 6.9 17.2 10.3 17.2 20.6 13.7 24 3.5 24ZM13.7 20.6L13.7 10.3 3.3 10.3 3.3 20.6 13.7 20.6ZM25 24L21.5 20.6 21.5 10.3 25 6.9 35.4 6.9 35.4 0 38.9 0 38.9 20.6 35.4 24 25 24ZM35.3 20.6L35.3 10.3 24.9 10.3 24.9 20.6 35.3 20.6ZM47 24L43.5 20.6 43.5 10.3 47 6.9 60.9 6.9 60.9 10.3 47 10.3 47 13.7 60.9 13.7 60.9 17.1 47 17.1 47 20.6 60.9 20.6 60.9 24 47 24ZM66.7 24L66.7 0 70.1 0 70.1 6.9 84 6.9 84 10.3 70.1 10.3 70.1 24 66.7 24Z"/>
-        </svg>
-      </a>
-    </div>
-    <div class="flex-1 w33p flex justify-end">
-      <a class="js-cart-trigger link" href="#">
-        <div class="flex items-center">
-          <span>Cart</span>
-          <span class="js-header-count cart-count circle text-center bg-black white bembo block hide">
-            {{ cart.items.length }}
-          </span>
-        </div>
-      </a>
     </div>
   </div>
 </header>

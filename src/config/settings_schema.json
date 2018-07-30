@@ -22,14 +22,15 @@
         "label": "Announcement"
       },
       {
+        "type": "checkbox",
+        "id": "make_announcement_linkable",
+        "label": "Make announcement linkable",
+        "default": false
+      },
+      {
         "type": "url",
         "id": "announcement_banner_link",
         "label": "Link in banner url"
-      },
-      {
-        "type": "text",
-        "id": "announcement_banner_link_text",
-        "label": "Link in banner text"
       }
     ]
   }

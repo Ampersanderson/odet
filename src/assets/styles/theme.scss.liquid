@@ -189,7 +189,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   margin: 0 auto 5rem;
   @media screen and (min-width: $break-md) {
     padding: 0 9%;
-    float: left;
+    float: right;
     width: 50%;
     margin: 0 0 10rem;
   }
@@ -267,21 +267,6 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   }
 }
 
-.main-padding {
-  {% if settings.show_announcement_banner == true %}
-    padding-top: 5rem;
-  {% else %}
-    padding-top: 3rem;
-  {% endif %}
-  @media screen and (min-width: $break-md) {
-    {% if settings.show_announcement_banner == true %}
-      padding-top: 7rem;
-    {% else %}
-      padding-top: 5rem;
-    {% endif %}
-  }
-}
-
 .newsletter-signup {
   border-bottom: 1px solid #A3A19E;
   button {
@@ -334,21 +319,13 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   border-top: 4px solid #222222;
 }
 
-.site-wrapper,
 .site-nav {
-  transform: translateX(0);
-  -webkit-transition: transform .2s;
-  transition: transform .2s;
   height: 3rem;
-  {% if settings.show_announcement_banner == true %}
-    top: 2rem;
-  {% else %}
-    top: 0
-  {% endif %}
   @media screen and (min-width: $break-md) {
-    height: 5rem;
+    height: 4rem;
   }
 }
+
 .cart-wrapper {
   width: 90%;
   transform: translateX(100%);
@@ -362,7 +339,17 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   }
 }
 
+.product-details,
+.announcement,
+.site-wrapper,
+.site-nav {
+  transform: translateX(0);
+  -webkit-transition: transform .2s;
+  transition: transform .2s;
+}
+
 .cart-open {
+  .announcement,
   .site-wrapper,
   .site-nav {
     transform: translateX(-90%);
@@ -371,6 +358,15 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
     }
     @media screen and (min-width: $break-lg) {
       transform: translateX(-30%);
+    }
+  }
+  .product-details {
+    transform: translateX(-90%);
+    @media screen and (min-width: $break-md) {
+      transform: translateX(-50%);
+    }
+    @media screen and (min-width: $break-lg) {
+      transform: translateX(-75%);
     }
   }
   .cart-wrapper {
@@ -495,9 +491,32 @@ footer {
     padding: 2rem;
   }
 }
+.pad-announcement {
+  padding: 0 1rem;
+  @media screen and (min-width: $break-md) {
+    padding: 0 2rem;
+  }
+}
 
 .announcement {
   a {
     margin-left: .25rem;
   }
+  .close-announcement {
+    position: relative;
+    top: -2px;
+  }
+}
+
+.product-details {
+  // background: red;
+  {% if settings.show_announcement_banner == true %}
+    top: 7rem;
+  {% else %}
+    top: 5rem;
+  {% endif %}
+  width: 40%;
+  position: fixed;
+  padding: 3rem 0;
+  right: 0;
 }

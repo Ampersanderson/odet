@@ -4,6 +4,7 @@ import "../../styles/fonts.scss.liquid";
 
 ($ => {
   const $body = $("body");
+  const $siteNav = $(".site-nav");
   const $mobileNav = $(".mobile-nav");
   const $mobileNavLink = $(".mobile-nav a");
   const $cart = $(".cart-items");
@@ -16,6 +17,9 @@ import "../../styles/fonts.scss.liquid";
   const $cartError = $(".js-cart-error");
   const $mobileNavOpen = $(".js-mobile-nav-open");
   const $mobileNavClose = $(".js-mobile-nav-close");
+  const $productDetails = $(".js-product-details");
+  const $productWrapper = $(".js-product-wrapper");
+  const $header = $(".js-header");
 
   $trigger.on("click", e => {
     e.preventDefault();
@@ -262,10 +266,6 @@ import "../../styles/fonts.scss.liquid";
       }
     });
 
-  $(".product-image").each(function() {
-    $(this).bind("load", () => $(this).addClass("show"));
-  });
-
   $mobileNavOpen.on("click", e => {
     $body.addClass("overflow-hidden");
     $mobileNav.addClass("open");
@@ -281,6 +281,52 @@ import "../../styles/fonts.scss.liquid";
     $mobileNav.removeClass("open");
   });
 
+  const isProductDetailsOverflow =
+    $(window).height() - $(".site-nav").height() - $(".announcement").height() >
+    $productDetails.height();
+
+  const detachProductDetails = () => {
+    if (!isProductDetailsOverflow) {
+      return;
+    }
+
+    const $details = $productDetails.detach();
+    $body.append($details);
+  };
+
+  const reattachProductDetails = () => {
+    const $details = $productDetails.detach();
+    $productWrapper.append($details);
+  };
+
+  $(window).scroll(() => {
+    if (isProductDetailsOverflow) {
+      return;
+    }
+
+    const offsetTop = $(window).scrollTop();
+    console.log(offsetTop);
+  });
+
+  const calculateHeaderPadding = () => {
+    const headerHeight = $header.height();
+    $(".js-main-padding").css("paddingTop", `${headerHeight}px`);
+  };
+
+  $(".js-close-announcement").on("click", e => {
+    e.preventDefault();
+
+    $(".js-announcement").addClass("hide");
+    localStorage.setItem("showAnnouncement", "false");
+    calculateHeaderPadding();
+  });
+
+  if (localStorage.showAnnouncement === "false") {
+    $(".js-announcement").addClass("hide");
+  }
+
   // On page load
   updateCart();
+  calculateHeaderPadding();
+  detachProductDetails();
 })(jQuery);
