@@ -10,10 +10,10 @@
   <div class="collection-row text-center overflow-hidden pt6">
     {% for product in collection.products %}
       <div class="collection-item border-box">
-        <a href="{{ product.url }}" class="inline-block no-underline black">
+        <a href="{{ product.url }}" class="inline-block no-underline black w100p">
           {% for image in product.images %}
             {% if forloop.first == true %}
-              <img class="block" src="{{ image | img_url: '500x' }}" />
+              <div class="bg-center bg-cover" style="height: 230px; background-image: url({{ image | img_url: '500x' }})"></div>
             {% endif %}
           {% endfor %}
           <div class="flex justify-between">
