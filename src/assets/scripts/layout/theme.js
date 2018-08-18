@@ -281,15 +281,18 @@ import "../../styles/fonts.scss.liquid";
     $mobileNav.removeClass("open");
   });
 
-  const isProductDetailsOverflow =
-    $(window).height() - $(".site-nav").height() - $(".announcement").height() >
-    $productDetails.height();
+  const handleProductDetails = () => {
+    const isOverflowing =
+      $(window).height() > $productDetails.outerHeight() + $header.height();
+
+    if (!isOverflowing) {
+      reattachProductDetails();
+    } else {
+      detachProductDetails();
+    }
+  };
 
   const detachProductDetails = () => {
-    if (!isProductDetailsOverflow) {
-      return;
-    }
-
     const $details = $productDetails.detach();
     $body.append($details);
   };
@@ -300,10 +303,6 @@ import "../../styles/fonts.scss.liquid";
   };
 
   $(window).scroll(() => {
-    if (isProductDetailsOverflow) {
-      return;
-    }
-
     const offsetTop = $(window).scrollTop();
     console.log(offsetTop);
   });
@@ -328,5 +327,7 @@ import "../../styles/fonts.scss.liquid";
   // On page load
   updateCart();
   calculateHeaderPadding();
-  detachProductDetails();
+  handleProductDetails();
+
+  $(window).on("resize", handleProductDetails);
 })(jQuery);
