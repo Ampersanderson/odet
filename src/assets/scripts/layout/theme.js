@@ -20,6 +20,7 @@ import "../../styles/fonts.scss.liquid";
   const $productDetails = $(".js-product-details");
   const $productWrapper = $(".js-product-wrapper");
   const $header = $(".js-header");
+  const $footer = $(".js-footer");
 
   $trigger.on("click", e => {
     e.preventDefault();
@@ -281,14 +282,40 @@ import "../../styles/fonts.scss.liquid";
     $mobileNav.removeClass("open");
   });
 
+  const positionDetailsFixed = () => {
+    $productDetails.css({
+      top: $header.height(),
+      bottom: "auto",
+      position: "fixed"
+    });
+  };
+
+  const positionDetailsAbsoluteTop = () => {
+    $productDetails.css({
+      top: 0,
+      bottom: "auto",
+      position: "absolute"
+    });
+  };
+
+  const positionDetailsAbsoluteBottom = () => {
+    $productDetails.css({
+      bottom: 0,
+      top: "auto",
+      position: "absolute"
+    });
+  };
+
   const handleProductDetails = () => {
     const isOverflowing =
-      $(window).height() > $productDetails.outerHeight() + $header.height();
+      $productDetails.outerHeight() + $header.height() > $(window).height();
 
-    if (!isOverflowing) {
+    if (isOverflowing) {
       reattachProductDetails();
+      positionDetailsAbsoluteTop();
     } else {
       detachProductDetails();
+      positionDetailsFixed();
     }
   };
 
@@ -304,7 +331,15 @@ import "../../styles/fonts.scss.liquid";
 
   $(window).scroll(() => {
     const offsetTop = $(window).scrollTop();
-    console.log(offsetTop);
+    const PONR = $productWrapper.height() - $productDetails.outerHeight();
+
+    if (offsetTop > PONR) {
+      reattachProductDetails();
+      positionDetailsAbsoluteBottom();
+    } else {
+      detachProductDetails();
+      positionDetailsFixed();
+    }
   });
 
   const calculateHeaderPadding = () => {
@@ -327,7 +362,7 @@ import "../../styles/fonts.scss.liquid";
   // On page load
   updateCart();
   calculateHeaderPadding();
-  handleProductDetails();
 
+  $(window).on("load", handleProductDetails);
   $(window).on("resize", handleProductDetails);
 })(jQuery);
