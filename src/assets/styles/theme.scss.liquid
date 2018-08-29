@@ -37,6 +37,14 @@ select { -webkit-appearance: menulist-button; }
   outline: none;
 }
 
+.list-reset {
+  margin: 0;
+  padding: 0;
+  li {
+    list-style-type: none;
+  }
+}
+
 .bembo { font-family: 'Bembo'; }
 .bembo-italic { font-family: 'Bembo Italic'; }
 
@@ -67,6 +75,7 @@ select { -webkit-appearance: menulist-button; }
 .no-underline { text-decoration: none; }
 .no-outline { outline: none; }
 .break-word { word-wrap: break-word; }
+.pre-line { white-space:pre-line; }
 
 .hide { display: none; }
 .hide-md {
@@ -197,6 +206,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 
 .white { color: #fff; }
 .bg-white { background-color: #fff; }
+.border-white { border-color: #fff; }
 
 .smoke { color: #eee; }
 .bg-smoke { background-color: #eee; }
@@ -513,4 +523,14 @@ footer {
   position: absolute;
   padding: 3rem 0;
   right: 0;
+}
+
+.product-tab {
+  border-color: #fff;
+  padding: 0 .5rem .25rem;
+  color: #BCBCBC;
+  &.active {
+    color: #222;
+    border-color: #222;
+  }
 }

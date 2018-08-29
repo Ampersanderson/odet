@@ -19,8 +19,11 @@ import "../../styles/fonts.scss.liquid";
   const $mobileNavClose = $(".js-mobile-nav-close");
   const $productDetails = $(".js-product-details");
   const $productWrapper = $(".js-product-wrapper");
+  const $detailsTab = $(".js-details-tab");
   const $header = $(".js-header");
   const $footer = $(".js-footer");
+  const $productTabs = $(".product-tabs");
+  const $productTab = $(".product-tab");
 
   $trigger.on("click", e => {
     e.preventDefault();
@@ -358,6 +361,17 @@ import "../../styles/fonts.scss.liquid";
   if (localStorage.showAnnouncement === "false") {
     $(".js-announcement").addClass("hide");
   }
+
+  $productTab.on("click", e => {
+    const tab = $(e.currentTarget).data("tab");
+
+    $productTab.removeClass("active");
+    $(e.currentTarget).addClass("active");
+    $productTabs.find("pre").hide();
+    $productTabs.find(`pre[data-tab=${tab}]`).show();
+  });
+
+  $productTab.first().trigger("click");
 
   // On page load
   updateCart();

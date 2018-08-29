@@ -51,8 +51,27 @@
           value="Add to Cart"
           class="bg-black white h4 py1 px2 bembo no-underline w100p pointer no-outline"
         />
-        <span class="border-bottom mt3 bembo mt3 inline-block" style="padding: 0 .5rem .25rem">Overview</span><br />
-        <p>{{ product.description }}</p>
+        <section class="product-tabs mt3">
+          <ul class="flex list-reset">
+            {% for field in product.metafields.Tabs offset:1 %}
+              <li class="product-tab border-bottom bembo pointer" data-tab="{{ field | first }}">
+                {{ field | first }}
+              </li>
+            {% endfor %}
+            {% for field in product.metafields.Tabs %}
+              {% if forloop.first %}
+                <li class="product-tab border-bottom bembo pointer" data-tab="{{ field | first }}">
+                  {{ field | first }}
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          {% for field in product.metafields.Tabs %}
+            <pre class="bembo-italic hide pre-line" data-tab="{{ field | first }}">
+              {{ field | last }}
+            </pre>
+          {% endfor %}
+        </section>
       </form>
     </div>
   </div>
