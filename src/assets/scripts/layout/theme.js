@@ -25,6 +25,8 @@ import "../../styles/fonts.scss.liquid";
   const $footer = $(".js-footer");
   const $productTabs = $(".product-tabs");
   const $productTab = $(".product-tab");
+  const $viewCart = $(".js-view-cart");
+  const $shopCollection = $(".js-shop-collection");
 
   const breakpoint = () => {
     return window.getComputedStyle(document.querySelector("body"), ":before")
@@ -143,19 +145,17 @@ import "../../styles/fonts.scss.liquid";
 
   const updateCountUI = count => {
     if (count > 0) {
+      $viewCart.show();
+      $shopCollection.hide();
       $headerCount.show().text(count);
       $sidebarCount.text(
         `${count} ${count === 1 ? "Item in Cart" : "Items in Cart"}`
       );
     } else {
+      $viewCart.hide();
+      $shopCollection.show();
       $headerCount.hide();
       $cartSubtotal.hide();
-      $sidebarCount.html(`
-        <p>
-          You ain’t seen nothing yet!<br />
-          <a class="white" href="/collections/the-collection">Shop the collection</a>
-        </p>
-      `);
     }
   };
 
