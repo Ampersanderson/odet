@@ -1,7 +1,7 @@
 <div class="js-product-wrapper overflow-hidden main-height relative">
   <div class="left main-height w60p">
-    {% for image in product.images %}
-      <img class="w100p block" src="{{ image | img_url: '1024x' }}" />
+    {% for image in product.images limit:2 %}
+      <img class="w100p block mb1" src="{{ image | img_url: '1024x' }}" />
     {% endfor %}
   </div>
   <div class="js-product-details product-details">
@@ -54,7 +54,7 @@
         <section class="product-tabs mt3">
           <ul class="flex list-reset">
             {% for field in product.metafields.Tabs offset:1 %}
-              <li class="product-tab border-bottom bembo pointer" data-tab="{{ field | first }}">
+              <li class="product-tab border-bottom bembo pointer mr1" data-tab="{{ field | first }}">
                 {{ field | first }}
               </li>
             {% endfor %}
@@ -73,6 +73,31 @@
           {% endfor %}
         </section>
       </form>
+    </div>
+  </div>
+</div>
+{% for image in product.images offset:2 limit:1 %}
+  <img class="w100p block mb1" src="{{ image | img_url: '2048x' }}" />
+{% endfor %}
+<div class="grid">
+  <div class="main-description mx-auto w100p py10">
+    {{ product.description }}
+  </div>
+</div>
+{% for image in product.images offset:3 %}
+  <img class="w100p block mb1" src="{{ image | img_url: '2048x' }}" />
+{% endfor %}
+<div class="grid">
+  <div class="main-description mx-auto w100p py10 flex">
+    <div class="flex-1 text-right">
+      <a class="link-with-underline mx1" href="/collections/the-collection">
+        Back to Collection
+      </a>
+    </div>
+    <div class="flex-1">
+      <a class="link-with-underline mx1" href="/pages/{{ product.handle }}">
+        Read the Essay
+      </a>
     </div>
   </div>
 </div>

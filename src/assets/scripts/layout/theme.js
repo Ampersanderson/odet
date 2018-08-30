@@ -309,13 +309,26 @@ import "../../styles/fonts.scss.liquid";
     });
   };
 
-  const handleProductDetails = () => {
+  const positionProductDetails = () => {
     const isOverflowing =
       $productDetails.outerHeight() + $header.height() > $(window).height();
 
     if (isOverflowing) {
       reattachProductDetails();
       positionDetailsAbsoluteTop();
+    } else {
+      detachProductDetails();
+      positionDetailsFixed();
+    }
+  };
+
+  const stickProductDetails = () => {
+    const offsetTop = $(window).scrollTop();
+    const PONR = $productWrapper.height() - $productDetails.outerHeight();
+
+    if (offsetTop > PONR) {
+      reattachProductDetails();
+      positionDetailsAbsoluteBottom();
     } else {
       detachProductDetails();
       positionDetailsFixed();
@@ -332,18 +345,7 @@ import "../../styles/fonts.scss.liquid";
     $productWrapper.append($details);
   };
 
-  $(window).scroll(() => {
-    const offsetTop = $(window).scrollTop();
-    const PONR = $productWrapper.height() - $productDetails.outerHeight();
-
-    if (offsetTop > PONR) {
-      reattachProductDetails();
-      positionDetailsAbsoluteBottom();
-    } else {
-      detachProductDetails();
-      positionDetailsFixed();
-    }
-  });
+  $(window).scroll(stickProductDetails);
 
   const calculateHeaderPadding = () => {
     const headerHeight = $header.height();
@@ -377,6 +379,12 @@ import "../../styles/fonts.scss.liquid";
   updateCart();
   calculateHeaderPadding();
 
-  $(window).on("load", handleProductDetails);
-  $(window).on("resize", handleProductDetails);
+  $(window).on("load", () => {
+    positionProductDetails();
+    stickProductDetails();
+  });
+  $(window).on("resize", () => {
+    positionProductDetails();
+    stickProductDetails();
+  });
 })(jQuery);
