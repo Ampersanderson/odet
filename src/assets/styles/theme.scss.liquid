@@ -22,6 +22,22 @@ html, body {
   height: 100%;
 }
 
+body {
+  &::before {
+    content: 'sm';
+    display: none;
+    @media screen and (min-width: $break-md) {
+      content: 'md';
+    }
+    @media screen and (min-width: $break-md) {
+      content: 'lg';
+    }
+    @media screen and (min-width: $break-md) {
+      content: 'xl';
+    }
+  }
+}
+
 img { max-width: 100%; }
 
 select { -webkit-appearance: menulist-button; }
@@ -518,11 +534,21 @@ footer {
   }
 }
 
+.product-images {
+  width: 50%;
+  @media screen and (min-width: $break-lg) {
+    width: 60%;
+  }
+}
+
 .product-details {
-  width: 40%;
+  width: 50%;
   position: absolute;
   padding: 3rem 0;
   right: 0;
+  @media screen and (min-width: $break-lg) {
+    width: 40%;
+  }
 }
 
 .product-tab {

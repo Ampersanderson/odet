@@ -20,10 +20,16 @@ import "../../styles/fonts.scss.liquid";
   const $productDetails = $(".js-product-details");
   const $productWrapper = $(".js-product-wrapper");
   const $detailsTab = $(".js-details-tab");
-  const $header = $(".js-header");
+  const $mobileHeader = $(".js-header.hide-md");
+  const $desktopHeader = $(".js-header.show-md");
   const $footer = $(".js-footer");
   const $productTabs = $(".product-tabs");
   const $productTab = $(".product-tab");
+
+  const breakpoint = () => {
+    return window.getComputedStyle(document.querySelector("body"), ":before")
+      .content;
+  };
 
   $trigger.on("click", e => {
     e.preventDefault();
@@ -190,8 +196,8 @@ import "../../styles/fonts.scss.liquid";
     $cartError.show().text(description);
   };
 
-  const notYetSelected = fieldName => {
-    const $placeholder = $(`.placeholder:contains('${fieldName}')`);
+  const notYetSelected = (fieldName, $form) => {
+    const $placeholder = $form.find(`.placeholder:contains('${fieldName}')`);
     const placeholderText = $placeholder.text().trim();
 
     if (placeholderText === fieldName) {
@@ -209,8 +215,9 @@ import "../../styles/fonts.scss.liquid";
 
   $cartForm.on("submit", e => {
     e.preventDefault();
+    const $form = $(e.currentTarget);
 
-    if (notYetSelected("Size") || notYetSelected("Qty")) {
+    if (notYetSelected("Size", $form) || notYetSelected("Qty", $form)) {
       return;
     }
 
@@ -287,7 +294,7 @@ import "../../styles/fonts.scss.liquid";
 
   const positionDetailsFixed = () => {
     $productDetails.css({
-      top: $header.height(),
+      top: $desktopHeader.height(),
       bottom: "auto",
       position: "fixed"
     });
@@ -311,7 +318,8 @@ import "../../styles/fonts.scss.liquid";
 
   const positionProductDetails = () => {
     const isOverflowing =
-      $productDetails.outerHeight() + $header.height() > $(window).height();
+      $productDetails.outerHeight() + $desktopHeader.height() >
+      $(window).height();
 
     if (isOverflowing) {
       reattachProductDetails();
@@ -345,10 +353,9 @@ import "../../styles/fonts.scss.liquid";
     $productWrapper.append($details);
   };
 
-  $(window).scroll(stickProductDetails);
-
   const calculateHeaderPadding = () => {
-    const headerHeight = $header.height();
+    const headerHeight =
+      breakpoint() === "sm" ? $mobileheader.height() : $desktopHeader.height();
     $(".js-main-padding").css("paddingTop", `${headerHeight}px`);
   };
 
@@ -367,23 +374,49 @@ import "../../styles/fonts.scss.liquid";
   $productTab.on("click", e => {
     const tab = $(e.currentTarget).data("tab");
 
-    $productTab.removeClass("active");
+    $(e.currentTarget)
+      .siblings()
+      .removeClass("active");
     $(e.currentTarget).addClass("active");
     $productTabs.find("pre").hide();
     $productTabs.find(`pre[data-tab=${tab}]`).show();
   });
 
-  $productTab.first().trigger("click");
+  $productTabs.each(function() {
+    $(this)
+      .find(".product-tab")
+      .first()
+      .trigger("click");
+  });
 
-  // On page load
-  updateCart();
-  calculateHeaderPadding();
+  $(window).scroll(() => {
+    if (breakpoint() === "sm") {
+      return;
+    }
 
-  $(window).on("load", () => {
     positionProductDetails();
     stickProductDetails();
   });
+
+  $(window).on("load", () => {
+    updateCart();
+    calculateHeaderPadding();
+
+    if (breakpoint() === "sm") {
+      return;
+    }
+
+    positionProductDetails();
+    stickProductDetails();
+  });
+
   $(window).on("resize", () => {
+    calculateHeaderPadding();
+
+    if (breakpoint() === "sm") {
+      return;
+    }
+
     positionProductDetails();
     stickProductDetails();
   });
