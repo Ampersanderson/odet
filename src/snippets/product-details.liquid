@@ -9,20 +9,26 @@
         <span>Size</span>
         <div class="arrow-down arrow-down-black"></div>
       </div>
-      <select name="id" class="absolute t0 l0 w100p h100p o0p pointer" disabled={{ !available }}>
-        <option value="Size" disabled selected>Size</option>
-        {% for variant in product.variants %}
-          {% if variant.available == true %}
-            <option value="{{ variant.id }}">
-              {{ variant.title }}
-            </option>
-          {% else %}
-            <option disabled="disabled">
-              {{ variant.title }} - sold out!
-            </option>
-          {% endif %}
-        {% endfor %}
-      </select>
+      {% if available %}
+        <select name="id" class="absolute t0 l0 w100p h100p o0p pointer">
+          <option value="Size" disabled selected>Size</option>
+          {% for variant in product.variants %}
+            {% if variant.available == true %}
+              <option value="{{ variant.id }}">
+                {{ variant.title }}
+              </option>
+            {% else %}
+              <option disabled="disabled">
+                {{ variant.title }} - sold out!
+              </option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      {% else %}
+        <select class="absolute t0 l0 w100p h100p o0p" disabled>
+          <option value="Size" disabled selected>Size</option>
+        </select>
+      {% endif %}
     </div>
     <span class="pl1"></span>
     <div class="relative w50p black">
@@ -30,12 +36,18 @@
         <span>Qty</span>
         <div class="arrow-down"></div>
       </div>
-      <select name="quantity" class="absolute t0 l0 w100p h100p o0p pointer" disabled={{ !available }}>
-        <option value="Qty" disabled selected>Qty</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
+      {% if available %}
+        <select name="quantity" class="absolute t0 l0 w100p h100p o0p pointer">
+          <option value="Qty" disabled selected>Qty</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      {% else %}
+        <select class="absolute t0 l0 w100p h100p o0p" disabled>
+          <option value="Qty" disabled selected>Qty</option>
+        </select>
+      {% endif %}
     </div>
   </div>
   {% if available %}
