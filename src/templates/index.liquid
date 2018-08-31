@@ -60,26 +60,7 @@
 <div class="grid">
   <div class="index-row overflow-hidden pt10">
     {% for product in collections.all.products %}
-      <div class="index-item border-box">
-        <a href="{{ product.url }}" class="inline-block no-underline black w100p">
-          {% for image in product.images %}
-            {% if forloop.first == true %}
-              <div class="h100p">
-                <div class="bg-center bg-cover" style="padding-top: 125%; background-image: url({{ image | img_url: '750x' }})"></div>
-              </div>
-            {% endif %}
-          {% endfor %}
-          <div class="flex justify-between">
-            <div>
-              <p class="bembo mb0" style="margin-bottom: .25rem;">
-                Concept {{ forloop.index }}:
-              </p>
-              <p class="m0">{{ product.title }}</p>
-            </div>
-            <p>{{ product.price | money_without_trailing_zeros }}</p>
-          </div>
-        </a>
-      </div>
+      {% include 'collection' %}
     {% endfor %}
   </div>
   <div class="text-center pb10">

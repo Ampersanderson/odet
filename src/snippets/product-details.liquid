@@ -1,13 +1,15 @@
+{% assign available = product.first_available_variant.available %}
+
 <h2 class="h1 text-normal mt0 mb1">{{ product.title }}</h2>
 <p class="mt0 mb2 gray">{{ product.price | money_without_trailing_zeros }}</p>
 <form class="js-cart-form" action="/cart/add" method="post" enctype="multipart/form-data">
   <div class="flex items-center mb1">
-    <div class="relative w50p">
-      <div class="placeholder p1 border border-smoke flex items-center justify-center bembo">
+    <div class="relative w50p black">
+      <div class="placeholder p1 border border-smoke flex items-center justify-center bembo {% if available != true %}gray{% endif %}">
         <span>Size</span>
         <div class="arrow-down arrow-down-black"></div>
       </div>
-      <select name="id" class="absolute t0 l0 w100p h100p o0p pointer">
+      <select name="id" class="absolute t0 l0 w100p h100p o0p pointer" disabled={{ !available }}>
         <option value="Size" disabled selected>Size</option>
         {% for variant in product.variants %}
           {% if variant.available == true %}
@@ -23,12 +25,12 @@
       </select>
     </div>
     <span class="pl1"></span>
-    <div class="relative w50p">
-      <div class="placeholder p1 border border-smoke flex items-center justify-center bembo">
+    <div class="relative w50p black">
+      <div class="placeholder p1 border border-smoke flex items-center justify-center bembo {% if available != true %}gray{% endif %}">
         <span>Qty</span>
-        <div class="arrow-down arrow-down-black"></div>
+        <div class="arrow-down"></div>
       </div>
-      <select name="quantity" class="absolute t0 l0 w100p h100p o0p pointer">
+      <select name="quantity" class="absolute t0 l0 w100p h100p o0p pointer" disabled={{ !available }}>
         <option value="Qty" disabled selected>Qty</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -36,13 +38,24 @@
       </select>
     </div>
   </div>
-  <input
-    type="submit"
-    name="add"
-    id="add"
-    value="Add to Cart"
-    class="bg-black white h4 py1 px2 bembo no-underline w100p pointer no-outline"
-  />
+  {% if available %}
+    <input
+      type="submit"
+      name="add"
+      id="add"
+      value="Add to Cart"
+      class="bg-black white h4 py1 px2 bembo no-underline w100p pointer no-outline"
+    />
+  {% else %}
+    <input
+      type="submit"
+      name="add"
+      id="add"
+      value="Add to Cart"
+      class="bg-white gray border border-smoke h4 py1 px2 bembo no-underline w100p no-outline"
+      disabled
+    />
+  {% endif %}
   <section class="product-tabs mt3">
     <ul class="flex list-reset">
       {% for field in product.metafields.Tabs offset:1 %}

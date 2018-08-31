@@ -1,0 +1,24 @@
+<div class="index-item border-box">
+  <a href="{{ product.url }}" class="inline-block no-underline black w100p">
+    {% for image in product.images %}
+      {% if forloop.first == true %}
+        <div class="h100p">
+          <div class="bg-center bg-cover" style="padding-top: 125%; background-image: url({{ image | img_url: '750x' }})"></div>
+        </div>
+      {% endif %}
+    {% endfor %}
+    <div class="flex justify-between">
+      <div>
+        <p class="bembo mb0" style="margin-bottom: .25rem;">
+          Concept {{ forloop.index }}:
+        </p>
+        <p class="m0">{{ product.title }}</p>
+      </div>
+      {% if product.first_available_variant.available %}
+        <p class="bembo">{{ product.price | money_without_trailing_zeros }}</p>
+      {% else %}
+        <p class="light-gray bembo">Sold Out</p>
+      {% endif %}
+    </div>
+  </a>
+</div>
