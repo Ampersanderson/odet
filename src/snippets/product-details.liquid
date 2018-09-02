@@ -14,7 +14,7 @@
           <option value="Size" disabled selected>Size</option>
           {% for variant in product.variants %}
             {% if variant.available == true %}
-              <option value="{{ variant.id }}">
+              <option value="{{ variant.id }}" data-variants-length="{{ variant.inventory_quantity }}">
                 {{ variant.title }}
               </option>
             {% else %}
@@ -68,6 +68,7 @@
       disabled
     />
   {% endif %}
+  <p class="add-to-cart-error red h5 hide"></p>
   <section class="product-tabs mt3">
     <ul class="flex list-reset">
       {% for field in product.metafields.Tabs offset:1 %}
