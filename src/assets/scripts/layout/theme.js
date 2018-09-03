@@ -27,6 +27,7 @@ import "../../styles/fonts.scss.liquid";
   const $productTab = $(".product-tab");
   const $viewCart = $(".js-view-cart");
   const $shopCollection = $(".js-shop-collection");
+  const $addToCartError = $(".add-to-cart-error");
 
   const breakpoint = () => {
     return window.getComputedStyle(document.querySelector("body"), ":before")
@@ -156,6 +157,7 @@ import "../../styles/fonts.scss.liquid";
       $shopCollection.show();
       $headerCount.hide();
       $cartSubtotal.hide();
+      $sidebarCount.text("0 Items in Cart");
     }
   };
 
@@ -221,6 +223,35 @@ import "../../styles/fonts.scss.liquid";
       return;
     }
 
+    const qty = $("select[name='quantity']")
+      .find(":selected")
+      .text()
+      .replace("Qty", "")
+      .trim();
+
+    const size = $("select[name='id']")
+      .find(":selected")
+      .text()
+      .replace("Size", "")
+      .trim();
+
+    const variantsAvailable = $("select[name='id']")
+      .find(":selected")
+      .filter(":enabled")
+      .data("variants-length");
+
+    if (qty > variantsAvailable) {
+      $addToCartError
+        .show()
+        .text(
+          variantsAvailable === 1
+            ? `There is only ${variantsAvailable} item left in ${size} size.`
+            : `There are only ${variantsAvailable} items left in ${size} size.`
+        );
+      return;
+    }
+
+    $addToCartError.hide();
     $body.addClass("cart-open");
 
     const serializedData = $(e.currentTarget).serialize();
