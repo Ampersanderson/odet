@@ -353,18 +353,11 @@ import "../../styles/fonts.scss.liquid";
     $productWrapper.append($details);
   };
 
-  const calculateHeaderPadding = () => {
-    const headerHeight =
-      breakpoint() === "sm" ? $mobileheader.height() : $desktopHeader.height();
-    $(".js-main-padding").css("paddingTop", `${headerHeight}px`);
-  };
-
   $(".js-close-announcement").on("click", e => {
     e.preventDefault();
 
     $(".js-announcement").addClass("hide");
     localStorage.setItem("showAnnouncement", "false");
-    calculateHeaderPadding();
   });
 
   if (localStorage.showAnnouncement === "false") {
@@ -400,7 +393,6 @@ import "../../styles/fonts.scss.liquid";
 
   $(window).on("load", () => {
     updateCart();
-    calculateHeaderPadding();
 
     if (breakpoint() === "sm") {
       return;
@@ -411,8 +403,6 @@ import "../../styles/fonts.scss.liquid";
   });
 
   $(window).on("resize", () => {
-    calculateHeaderPadding();
-
     if (breakpoint() === "sm") {
       return;
     }

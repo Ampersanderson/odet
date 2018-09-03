@@ -1,5 +1,5 @@
-{% if settings.show_announcement_banner %}
-  {% if settings.make_announcement_linkable %}
+{% if settings.display_announcement_banner %}
+  {% if settings.link_announcement_banner %}
     <a class="black no-underline" href="{{ settings.announcement_banner_link }}">
       {% include 'announcement-bar' %}
     </a>

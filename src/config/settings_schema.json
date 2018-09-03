@@ -12,8 +12,8 @@
     "settings": [
       {
         "type": "checkbox",
-        "id": "show_announcement_banner",
-        "label": "Show announcement banner",
+        "id": "display_announcement_banner",
+        "label": "Display announcement banner",
         "default": false
       },
       {
@@ -23,14 +23,14 @@
       },
       {
         "type": "checkbox",
-        "id": "make_announcement_linkable",
-        "label": "Make announcement linkable",
+        "id": "link_announcement_banner",
+        "label": "Link announcement banner",
         "default": false
       },
       {
         "type": "url",
         "id": "announcement_banner_link",
-        "label": "Link in banner url"
+        "label": "Announcement Link"
       }
     ]
   }

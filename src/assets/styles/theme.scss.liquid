@@ -286,16 +286,19 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 }
 
 .home-hero {
-  height: calc(100vh - 7rem);
+  height: calc(100vh - 10rem);
   @media screen and (min-width: $break-md) {
-    height: calc(100vh - 11rem);
+    height: calc(100vh - 12rem);
   }
 }
 
 .main-height {
   min-height: calc(100vh - 3rem);
   @media screen and (min-width: $break-md) {
-    min-height: calc(100vh - 24rem);
+    min-height: calc(100vh - 23rem);
+    &.banner-showing {
+      min-height: calc(100vh - 25rem);
+    }
   }
 }
 
@@ -349,6 +352,13 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 }
 .arrow-down-white {
   border-top: 4px solid #ffffff;
+}
+
+.site-wrapper {
+  height: calc(100% - 4rem);
+  &.banner-showing {
+    height: calc(100% - 6rem);
+  }
 }
 
 .site-nav {
@@ -562,5 +572,12 @@ footer {
   &.active {
     color: #222;
     border-color: #222;
+  }
+}
+
+.pad-header {
+  padding-top: 4rem;
+  &.banner-showing {
+    padding-top: 6rem;
   }
 }

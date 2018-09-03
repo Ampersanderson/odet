@@ -22,8 +22,8 @@
 
 <body>
   {% include 'header' %}
-  <div class="site-wrapper h100p">
-    <div class="js-main-padding main-height">
+  <div class="site-wrapper {% if settings.display_announcement_banner %}banner-showing{% endif %}">
+    <div class="main-height {% if settings.display_announcement_banner %}banner-showing{% endif %}">
       {{ content_for_layout }}
     </div>
     {% include 'footer' %}

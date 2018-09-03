@@ -1,5 +1,5 @@
 <div class="show-md">
-  <div class="js-product-wrapper overflow-hidden main-height relative">
+  <div class="js-product-wrapper overflow-hidden main-height relative {% if settings.display_announcement_banner %}banner-showing{% endif %}">
     <div class="product-images left main-height">
       {% for image in product.images limit:2 %}
         <img class="w100p block mb1" src="{{ image | img_url: '1024x' }}" />
