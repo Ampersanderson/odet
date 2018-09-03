@@ -1,6 +1,6 @@
 {% assign collection = collections['all'] %}
 
-<div class="home-hero">
+<div class="home-hero {% if settings.display_announcement_banner %}banner-showing{% endif %}">
   <div class="w100p h100p bg-cover bg-center bg-no-repeat" style="background-image: url({{ collection.image | img_url: '1440x768' }})"></div>
 </div>
 <div class="main-height flex flex-column">
