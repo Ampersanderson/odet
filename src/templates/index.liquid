@@ -1,4 +1,4 @@
-{% assign collection = collections['all'] %}
+{% assign collection = collections['homepage'] %}
 
 <div class="home-hero {% if settings.display_announcement_banner %}banner-showing{% endif %}">
   <div class="w100p h100p bg-cover bg-center bg-no-repeat" style="background-image: url({{ collection.image | img_url: '1440x768' }})"></div>
@@ -58,8 +58,8 @@
   </div>
 </div>
 <div class="grid">
-  <div class="index-row overflow-hidden pt10">
-    {% for product in collections.all.products %}
+  <div class="index-row overflow-hidden">
+    {% for product in collections.homepage.products %}
       {% include 'collection' %}
     {% endfor %}
   </div>
