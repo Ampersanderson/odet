@@ -1,0 +1,12 @@
+<div class="grid">
+  <div class="main-description mx-auto w100p pt3 pb4 flex justify-center">
+    <a class="link-with-underline mx1" href="/collections/the-collection">
+      Back to Collection
+    </a>
+    {% for field in product.metafields.Links %}
+      <a class="link-with-underline mx1" target="_blank" href="{{ field | last }}">
+        {{ field | first }}
+      </a>
+    {% endfor %}
+  </div>
+</div>

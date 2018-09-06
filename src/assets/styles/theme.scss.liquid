@@ -40,6 +40,11 @@ body {
 
 img { max-width: 100%; }
 
+input, textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
 select { -webkit-appearance: menulist-button; }
 
 #preview-bar-iframe {
@@ -63,6 +68,7 @@ select { -webkit-appearance: menulist-button; }
 
 .bembo { font-family: 'Bembo'; }
 .bembo-italic { font-family: 'Bembo Italic'; }
+.helvetica { font-family: 'Helvetica Neue', Helvetica, sans-serif; }
 
 .flex { display: flex; }
 .flex-column { flex-direction: column; }
@@ -259,7 +265,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   text-decoration: none;
 }
 
-.link-with-underline {
+.odet-page a, pre a, .link-with-underline {
   color: #222222;
   display: inline-block;
   border-bottom: 1px solid #D7DBDF;
@@ -344,6 +350,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   width: 1.5rem;
   height: 1.5rem;
   margin-left: .5rem;
+  line-height: 1.66;
 }
 
 .arrow-down {
@@ -375,7 +382,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 }
 
 .cart-wrapper {
-  width: 90%;
+  width: 100%;
   transform: translateX(100%);
   -webkit-transition: transform .2s;
   transition: transform .2s;
@@ -495,9 +502,6 @@ footer {
 
 .odet-page {
   text-align: center;
-  a {
-    color: #222;
-  }
   p, ul {
     text-align: left;
     max-width: 500px;

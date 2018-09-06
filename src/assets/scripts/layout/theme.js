@@ -304,7 +304,7 @@ import "../../styles/fonts.scss.liquid";
         $image.wrap(
           '<div class="js-img-wrapper text-center"><div class="inline-block"></div></div>'
         );
-        $image.after(`<span class="block text-left mx-auto">${alt}</span>`);
+        $image.after(`<span class="block text-left mx-auto h5">${alt}</span>`);
       }
     });
 
