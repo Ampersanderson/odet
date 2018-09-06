@@ -9,7 +9,7 @@
 <form class="js-cart-form" action="/cart/add" method="post" enctype="multipart/form-data">
   <div class="flex items-center mb1">
     <div class="relative w50p black">
-      <div class="placeholder p1 border border-smoke flex items-center justify-center bembo {% if available != true %}gray{% endif %}">
+      <div class="placeholder hover-select p1 border flex items-center justify-center bembo {% if available != true %}gray{% endif %}">
         <span>Size</span>
         <div class="arrow-down arrow-down-black"></div>
       </div>
@@ -36,7 +36,7 @@
     </div>
     <span class="pl1"></span>
     <div class="relative w50p black">
-      <div class="placeholder p1 border border-smoke flex items-center justify-center bembo {% if available != true %}gray{% endif %}">
+      <div class="placeholder hover-select p1 border flex items-center justify-center bembo {% if available != true %}gray{% endif %}">
         <span>Qty</span>
         <div class="arrow-down"></div>
       </div>
@@ -60,7 +60,7 @@
       name="add"
       id="add"
       value="Add to Cart"
-      class="bg-black white h4 py1 px2 bembo no-underline w100p pointer no-outline"
+      class="bg-black white h4 py1 px2 bembo no-underline w100p pointer no-outline hover-opacity-7"
     />
   {% else %}
     <input

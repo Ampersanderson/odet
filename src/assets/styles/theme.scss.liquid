@@ -179,6 +179,38 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   .z#{$value} { z-index: #{$value}; }
 }
 
+.hover-opacity-5 {
+  opacity: 1;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+  &:hover {
+    opacity: .5;
+  }
+}
+
+.hover-opacity-7 {
+  opacity: 1;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.hover-image-wrapper {
+  .hover-image {
+    transform: scale(1);
+    transform-origin: center;
+    -webkit-transition: transform .2s;
+    transition: transform .2s;
+  }
+  &:hover {
+    .hover-image {
+      transform: scale(1.1);
+    }
+  }
+}
+
 .w33p { width: 33.3%; }
 .height-auto { height: auto; }
 .mx-auto { margin-left: auto; margin-right: auto; }
@@ -268,8 +300,15 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 .odet-page a, pre a, .link-with-underline {
   color: #222222;
   display: inline-block;
-  border-bottom: 1px solid #D7DBDF;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #D7DBDF;
   text-decoration: none;
+  -webkit-transition: border-bottom-color .2s;
+  transition: border-bottom-color .2s;
+  &:hover {
+    border-bottom-color: #222;
+  }
 }
 
 .home-links {

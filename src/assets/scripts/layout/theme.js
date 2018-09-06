@@ -90,7 +90,7 @@ import "../../styles/fonts.scss.liquid";
                 )}
               </select>
             </div>
-            <a class="h5 white no-underline remove-from-cart" href="#">
+            <a class="h5 white no-underline remove-from-cart hover-opacity-5" href="#">
               Remove
             </a>
           </div>

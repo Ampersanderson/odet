@@ -4,25 +4,25 @@
       <nav class="w20p left py1">
         <p class="bembo bronze mt0 pb1">Products</p>
         {% for products in linklists.products-menu.links %}
-          <a class="inline-block link" href="{{ products.url }}">{{ products.title }}</a><br />
+          <a class="inline-block link hover-opacity-5" href="{{ products.url }}">{{ products.title }}</a><br />
         {% endfor %}
       </nav>
       <nav class="w20p left py1">
         <p class="bembo bronze mt0 pb1">About</p>
         {% for about in linklists.about-menu.links %}
-          <a class="inline-block link" href="{{ about.url }}">{{ about.title }}</a><br />
+          <a class="inline-block link hover-opacity-5" href="{{ about.url }}">{{ about.title }}</a><br />
         {% endfor %}
       </nav>
       <nav class="w20p left py1">
         <p class="bembo bronze mt0 pb1">Connect</p>
         {% for connect in linklists.connect-menu.links %}
-          <a class="inline-block link" href="{{ connect.url }}">{{ connect.title }}</a><br />
+          <a class="inline-block link hover-opacity-5" href="{{ connect.url }}">{{ connect.title }}</a><br />
         {% endfor %}
       </nav>
       <nav class="w20p left py1">
         <p class="bembo bronze mt0 pb1">Info</p>
         {% for info in linklists.info-menu.links %}
-          <a class="inline-block link" href="{{ info.url }}">{{ info.title }}</a><br />
+          <a class="inline-block link hover-opacity-5" href="{{ info.url }}">{{ info.title }}</a><br />
         {% endfor %}
       </nav>
     </div>

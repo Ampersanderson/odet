@@ -1,9 +1,9 @@
 <div class="index-item border-box">
-  <a href="{{ product.url }}" class="inline-block no-underline black w100p">
+  <a href="{{ product.url }}" class="inline-block no-underline black w100p hover-image-wrapper">
     {% for image in product.images %}
       {% if forloop.first == true %}
-        <div class="h100p">
-          <div class="bg-center bg-cover" style="padding-top: 125%; background-image: url({{ image | img_url: '750x' }})"></div>
+        <div class="h100p overflow-hidden">
+          <div class="bg-center bg-cover hover-image" style="padding-top: 125%; background-image: url({{ image | img_url: '750x' }})"></div>
         </div>
       {% endif %}
     {% endfor %}
