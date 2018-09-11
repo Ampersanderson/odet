@@ -52,15 +52,18 @@ import "../../styles/fonts.scss.liquid";
     { value: 3, label: "3" }
   ];
 
-  const cartItemToHtml = ({
-    image,
-    variant_id,
-    variant_title,
-    product_title,
-    product_type,
-    quantity,
-    price
-  }) => {
+  const cartItemToHtml = resp => {
+    const {
+      image,
+      variant_id,
+      variant_title,
+      product_title,
+      product_type,
+      quantity,
+      price
+    } = resp;
+    console.log(resp);
+
     return `
       <div class="cart-item w100p pb1" data-id="${variant_id}">
         <div class="flex w100p">
@@ -75,8 +78,8 @@ import "../../styles/fonts.scss.liquid";
             </span>
           </div>
           <div class="flex flex-column justify-between">
-            <div class="relative">
-              <div class="p1 border border-black flex items-center justify-center">
+            <div class="hover-placeholder-dark relative">
+              <div class="p1 flex items-center justify-center">
                 ${quantity} <div class="arrow-down arrow-down-white"></div>
               </div>
               <select class="absolute t0 l0 w100p h100p o0p pointer">

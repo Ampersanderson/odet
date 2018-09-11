@@ -8,10 +8,12 @@
 {% endif %}
 <form class="js-cart-form" action="/cart/add" method="post" enctype="multipart/form-data">
   <div class="flex items-center mb1">
-    <div class="relative w50p black">
-      <div class="placeholder hover-select p1 border flex items-center justify-center bembo {% if available != true %}gray{% endif %}">
-        <span>Size</span>
-        <div class="arrow-down arrow-down-black"></div>
+    <div class="hover-placeholder relative w50p black">
+      <div class="placeholder border bembo {% if available != true %}gray{% endif %}">
+        <div class="p1 flex items-center justify-center">
+          <span>Size</span>
+          <div class="arrow-down arrow-down-black"></div>
+        </div>
       </div>
       {% if available %}
         <select name="id" class="absolute t0 l0 w100p h100p o0p pointer">
@@ -35,8 +37,8 @@
       {% endif %}
     </div>
     <span class="pl1"></span>
-    <div class="relative w50p black">
-      <div class="placeholder hover-select p1 border flex items-center justify-center bembo {% if available != true %}gray{% endif %}">
+    <div class="hover-placeholder relative w50p black">
+      <div class="placeholder p1 border flex items-center justify-center bembo {% if available != true %}gray{% endif %}">
         <span>Qty</span>
         <div class="arrow-down"></div>
       </div>
@@ -60,7 +62,7 @@
       name="add"
       id="add"
       value="Add to Cart"
-      class="bg-black white h4 py1 px2 bembo no-underline w100p pointer no-outline hover-opacity-7"
+      class="bg-black white h4 py1 px2 bembo no-underline w100p pointer no-outline"
     />
   {% else %}
     <input
@@ -76,13 +78,13 @@
   <section class="product-tabs mt3">
     <ul class="flex list-reset">
       {% for field in product.metafields.Tabs offset:1 %}
-        <li class="product-tab border-bottom bembo pointer mr1" data-tab="{{ field | first }}">
+        <li class="product-tab light-gray hover-gray border-bottom bembo pointer mr1" data-tab="{{ field | first }}">
           {{ field | first }}
         </li>
       {% endfor %}
       {% for field in product.metafields.Tabs %}
         {% if forloop.first %}
-          <li class="product-tab border-bottom bembo pointer" data-tab="{{ field | first }}">
+          <li class="product-tab light-gray hover-gray border-bottom bembo pointer" data-tab="{{ field | first }}">
             {{ field | first }}
           </li>
         {% endif %}

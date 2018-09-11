@@ -261,6 +261,12 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 .white { color: #fff; }
 .bg-white { background-color: #fff; }
 .border-white { border-color: #fff; }
+.hover-border-white {
+  transition: border-color .2s;
+  &:hover {
+    border-color: white;
+  }
+}
 
 .smoke { color: #eee; }
 .bg-smoke { background-color: #eee; }
@@ -274,7 +280,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 
 .black { color: #222222; }
 .bg-black { background-color: #222222; }
-.border-black { border-color: #4e4e4e; }
+.border-black { border-color: #222222; }
 
 .red { color: #ED5A5A }
 .bg-red { background-color: #ED5A5A; }
@@ -283,10 +289,22 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 .gray { color: #999; }
 .bg-gray { background-color: #999; }
 .border-gray { border-color: #999; }
+.hover-gray {
+  transition: color .2s;
+  &:hover {
+    color: #999;
+  }
+}
+.hover-border-gray {
+  transition: border-color .2s;
+  &:hover {
+    border-color: #999;
+  }
+}
 
-.light-gray { color: #CCC; }
-.bg-light-gray { background-color: #CCC; }
-.border-light-gray { border-color: #CCC; }
+.light-gray { color: #BCBCBC; }
+.bg-light-gray { background-color: #BCBCBC; }
+.border-light-gray { border-color: #BCBCBC; }
 
 .charcoal { color: #4e4e4e; }
 .bg-charcoal { background-color: #4e4e4e; }
@@ -297,7 +315,10 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   text-decoration: none;
 }
 
-.odet-page a, pre a, .link-with-underline {
+p a,
+pre a,
+.odet-page a,
+.link-with-underline {
   color: #222222;
   display: inline-block;
   border-bottom-width: 1px;
@@ -489,11 +510,29 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 .placeholder {
   -webkit-transition: border-color .6s;
   transition: border-color .6s;
-  border-color: #eee;
+  border-color: rgba(0,0,0,.1);
   &.flash-select {
     -webkit-transition: border-color 0s;
     transition: border-color 0s;
-    border-color: #999;
+    border-color: rgba(0,0,0,.4);
+  }
+}
+
+.hover-placeholder {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,0);
+  &:hover {
+    box-shadow: inset 0 0 0 2px rgba(0,0,0,.3);
+  }
+}
+
+.hover-placeholder-dark {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.1);
+  &:hover {
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,.3);
   }
 }
 
@@ -617,7 +656,6 @@ footer {
 .product-tab {
   border-color: #fff;
   padding: 0 .5rem .25rem;
-  color: #BCBCBC;
   &.active {
     color: #222;
     border-color: #222;
