@@ -52,18 +52,15 @@ import "../../styles/fonts.scss.liquid";
     { value: 3, label: "3" }
   ];
 
-  const cartItemToHtml = resp => {
-    const {
-      image,
-      variant_id,
-      variant_title,
-      product_title,
-      product_type,
-      quantity,
-      price
-    } = resp;
-    console.log(resp);
-
+  const cartItemToHtml = ({
+    image,
+    variant_id,
+    variant_title,
+    product_title,
+    product_type,
+    quantity,
+    price
+  }) => {
     return `
       <div class="cart-item w100p pb1" data-id="${variant_id}">
         <div class="flex w100p">
@@ -416,7 +413,33 @@ import "../../styles/fonts.scss.liquid";
       .trigger("click");
   });
 
-  $(window).scroll(() => {
+  const fadeInImage = () => {
+    $("div[data-img]").each(function() {
+      if (!$(this).hasClass("fade-image")) {
+        return;
+      }
+
+      const $this = $(this);
+      const $window = $(window);
+      const fadeInPoint = $window.scrollTop() + $window.height() - 100;
+      const imageOffset = $this.offset().top;
+      const imageHref = $this.data("img");
+
+      if (fadeInPoint > imageOffset) {
+        $("<img>")
+          .attr("src", imageHref)
+          .on("load", () => {
+            $this
+              .css("background-image", `url(${imageHref})`)
+              .removeClass("fade-image");
+          });
+      }
+    });
+  };
+
+  $(window).on("scroll", () => {
+    fadeInImage();
+
     if (breakpoint() === "sm") {
       return;
     }
@@ -427,6 +450,7 @@ import "../../styles/fonts.scss.liquid";
 
   $(window).on("load", () => {
     updateCart();
+    fadeInImage();
 
     if (breakpoint() === "sm") {
       return;

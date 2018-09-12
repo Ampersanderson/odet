@@ -2,7 +2,9 @@
   <div class="js-product-wrapper overflow-hidden main-height relative {% if settings.display_announcement_banner %}banner-showing{% endif %}">
     <div class="product-images left main-height">
       {% for image in product.images limit:2 %}
-        <img class="w100p block mb1" src="{{ image | img_url: '1024x' }}" />
+        <div class="h100p overflow-hidden bg-smoke mb1">
+          <div class="image bg-center bg-cover fade-image" style="padding-top: 125%;" data-img="{{ image | img_url: '1024x' }}"></div>
+        </div>
       {% endfor %}
     </div>
     <div class="js-product-details product-details">
@@ -12,7 +14,9 @@
     </div>
   </div>
   {% for image in product.images offset:2 limit:1 %}
-    <img class="w100p block mb1" src="{{ image | img_url: '2048x' }}" />
+    <div class="h100p overflow-hidden bg-smoke mb1">
+      <div class="image bg-center bg-cover fade-image" style="padding-top: 125%;" data-img="{{ image | img_url: '2048x' }}"></div>
+    </div>
   {% endfor %}
   <div class="grid">
     <div class="main-description mx-auto w100p py10">
@@ -20,19 +24,25 @@
     </div>
   </div>
   {% for image in product.images offset:3 %}
-    <img class="w100p block mb1" src="{{ image | img_url: '2048x' }}" />
+    <div class="h100p overflow-hidden bg-smoke mb1">
+      <div class="image bg-center bg-cover fade-image" style="padding-top: 125%;" data-img="{{ image | img_url: '2048x' }}"></div>
+    </div>
   {% endfor %}
   {% include 'product-ctas' %}
 </div>
 <div class="hide-md">
   {% for image in product.images limit:1 %}
-    <img class="w100p block mb1" src="{{ image | img_url: '1024x' }}" />
+    <div class="h100p overflow-hidden bg-smoke mb1">
+      <div class="image bg-center bg-cover fade-image" style="padding-top: 125%;" data-img="{{ image | img_url: '1024x' }}"></div>
+    </div>
   {% endfor %}
   <div class="grid pt1 pb3">
     {% include 'product-details' %}
   </div>
   {% for image in product.images offset:1 %}
-    <img class="w100p block mb1" src="{{ image | img_url: '1024x' }}" />
+    <div class="h100p overflow-hidden bg-smoke mb1">
+      <div class="image bg-center bg-cover fade-image" style="padding-top: 125%;" data-img="{{ image | img_url: '1024x' }}"></div>
+    </div>
   {% endfor %}
   {% include 'product-ctas' %}
 </div>

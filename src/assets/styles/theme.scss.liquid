@@ -117,6 +117,7 @@ select { -webkit-appearance: menulist-button; }
 .relative { position: relative; }
 .absolute { position: absolute; }
 .fixed { position: fixed; }
+.sticky { position: sticky; }
 
 .overflow-hidden { overflow: hidden; }
 .scroll-y { overflow-y: scroll; }
@@ -201,13 +202,24 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   .hover-image {
     transform: scale(1);
     transform-origin: center;
-    -webkit-transition: transform .2s;
-    transition: transform .2s;
+    -webkit-transition: all .2s;
+    transition: all .2s;
   }
   &:hover {
     .hover-image {
       transform: scale(1.1);
     }
+  }
+}
+
+.image {
+  opacity: 1;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  &.fade-image {
+    opacity: 0;
+    -webkit-transition: all 1s;
+    transition: all 1s;
   }
 }
 

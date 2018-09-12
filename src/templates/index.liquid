@@ -1,7 +1,7 @@
 {% assign collection = collections['homepage'] %}
 
-<div class="home-hero {% if settings.display_announcement_banner %}banner-showing{% endif %}">
-  <div class="w100p h100p bg-cover bg-center bg-no-repeat" style="background-image: url({{ collection.image | img_url: '1440x768' }})"></div>
+<div class="bg-smoke home-hero {% if settings.display_announcement_banner %}banner-showing{% endif %}">
+  <div class="image w100p h100p bg-cover bg-center bg-no-repeat fade-image" data-img="{{ collection.image | img_url: '1440x768' }}"></div>
 </div>
 <div class="main-height flex flex-column">
   <div class="pad-index-numbers flex justify-between bembo h2">
