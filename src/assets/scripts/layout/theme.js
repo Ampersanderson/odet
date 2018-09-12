@@ -324,11 +324,13 @@ import "../../styles/fonts.scss.liquid";
   });
 
   const positionDetailsFixed = () => {
-    $productDetails.css({
-      top: $desktopHeader.height(),
-      bottom: "auto",
-      position: "fixed"
-    });
+    $productDetails
+      .css({
+        top: $desktopHeader.height(),
+        bottom: "auto",
+        position: "fixed"
+      })
+      .addClass("transform-details");
   };
 
   const positionDetailsAbsoluteTop = () => {
@@ -340,11 +342,13 @@ import "../../styles/fonts.scss.liquid";
   };
 
   const positionDetailsAbsoluteBottom = () => {
-    $productDetails.css({
-      bottom: 0,
-      top: "auto",
-      position: "absolute"
-    });
+    $productDetails
+      .css({
+        bottom: 0,
+        top: "auto",
+        position: "absolute"
+      })
+      .removeClass("transform-details");
   };
 
   const positionProductDetails = () => {

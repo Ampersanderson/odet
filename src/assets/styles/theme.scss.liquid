@@ -488,12 +488,14 @@ pre a,
     }
   }
   .product-details {
-    transform: translateX(-90%);
-    @media screen and (min-width: $break-md) {
-      transform: translateX(-50%);
-    }
-    @media screen and (min-width: $break-lg) {
-      transform: translateX(-75%);
+    &.transform-details {
+      transform: translateX(-90%);
+      @media screen and (min-width: $break-md) {
+        transform: translateX(-50%);
+      }
+      @media screen and (min-width: $break-lg) {
+        transform: translateX(-75%);
+      }
     }
   }
   .cart-wrapper {
