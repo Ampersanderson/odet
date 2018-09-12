@@ -22,9 +22,7 @@
           <a class="js-cart-trigger link p1 hover-opacity-5" href="#">
             <div class="flex items-center">
               <span>Cart</span>
-              <span class="js-header-count cart-count circle text-center bg-black h5 flex white helvetica block hide">
-                {{ cart.items.length }}
-              </span>
+              {% include 'cart-count' %}
             </div>
           </a>
         </div>
@@ -56,9 +54,7 @@
         <a class="js-cart-trigger link" href="#">
           <div class="flex items-center">
             <span>Cart</span>
-            <span class="js-header-count cart-count circle text-center bg-black white bembo block hide">
-              {{ cart.items.length }}
-            </span>
+            {% include 'cart-count' %}
           </div>
         </a>
       </div>
