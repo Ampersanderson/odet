@@ -171,35 +171,42 @@ import "../../styles/fonts.scss.liquid";
     }
   };
 
-  const updateTotalUI = (total, shippingPrice) => {
+  const updateTotalUI = total => {
     if (total === 0) {
       $cartSubtotal.hide();
       $cartShipping.hide();
     } else {
       $cartSubtotal.show();
       $cartShipping.show();
-      $cartSubtotalCost.text(priceToCurrency(total + shippingPrice * 100));
+      $cartSubtotalCost.text(priceToCurrency(total));
     }
   };
 
-  const updateShippingUI = (name, price) => {
+  const updateShippingUI = (name, price, total) => {
     $cartShippingName.text(name);
     $cartShippingCost.text(priceToCurrency(price * 100));
+    $cartSubtotalCost.text(priceToCurrency(total + price * 100));
   };
 
   const updateCart = (reorderItems = true) => {
-    getShippingRates().always(resp => {
-      const { name: shippingName, price: shippingPrice } =
-        resp && resp.shipping_rates ? resp.shipping_rates[0] : {};
+    getCartItems().done(({ items, total_price }) => {
+      if (reorderItems) {
+        updateItemsUI(items);
+      }
+      updateTotalUI(total_price);
+      updateCountUI(calculateCartCount(items));
 
-      getCartItems().done(({ items, total_price }) => {
-        if (reorderItems) {
-          updateItemsUI(items);
-        }
-        updateTotalUI(total_price, shippingPrice);
-        updateCountUI(calculateCartCount(items));
-        updateShippingUI(shippingName, shippingPrice);
-      });
+      getShippingRates()
+        .done(({ shipping_rates }) => {
+          const { name: shippingName, price: shippingPrice } = shipping_rates
+            ? shipping_rates[0]
+            : {};
+
+          updateShippingUI(shippingName, shippingPrice, total_price);
+        })
+        .fail(() => {
+          updateTotalUI(0);
+        });
     });
   };
 
