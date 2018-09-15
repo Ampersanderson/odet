@@ -114,7 +114,17 @@ import "../../styles/fonts.scss.liquid";
   };
 
   const calculateShippingCost = totalWeight => {
-    return Math.round(totalWeight * 0.0022046);
+    const pounds = Math.round(totalWeight * 0.0022046);
+
+    if (pounds > 0 && pounds < 5) {
+      return 10;
+    }
+
+    if (pounds > 5) {
+      return 20;
+    }
+
+    return 0;
   };
 
   const getCartItems = () => {
@@ -138,7 +148,6 @@ import "../../styles/fonts.scss.liquid";
   };
 
   const appendCartItem = (item, id) => {
-    console.log(item);
     $("<div/>")
       .addClass("append-cart-item")
       .appendTo(".cart-items")
@@ -178,24 +187,22 @@ import "../../styles/fonts.scss.liquid";
     }
   };
 
-  const updateShippingUI = totalWeightInPounds => {
-    console.log(totalWeightInPounds);
-    if (totalWeightInPounds > 5) {
-      $cartShippingCost.text("$20");
-      return;
-    }
-
-    $cartShippingCost.text("$10");
+  const updateShippingUI = shippingCost => {
+    $cartShippingCost.text(priceToCurrency(shippingCost * 100));
   };
 
   const updateCart = (reorderItems = true) => {
     getCartItems().done(({ items, total_price, total_weight }) => {
+      const shippingCost = calculateShippingCost(total_weight);
+
       if (reorderItems) {
         updateItemsUI(items);
       }
-      updateTotalUI(total_price);
+
+      updateShippingUI(shippingCost);
       updateCountUI(calculateCartCount(items));
-      updateShippingUI(calculateShippingCost(total_weight));
+      console.log(total_price + shippingCost * 100);
+      updateTotalUI(total_price + shippingCost * 100);
     });
   };
 
