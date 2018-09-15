@@ -14,6 +14,7 @@ import "../../styles/fonts.scss.liquid";
   const $cartSubtotal = $(".js-subtotal");
   const $cartSubtotalCost = $(".js-subtotal-cost");
   const $cartShipping = $(".js-shipping");
+  const $cartShippingName = $(".js-shipping-name");
   const $cartShippingCost = $(".js-shipping-cost");
   const $cartForm = $(".js-cart-form");
   const $cartError = $(".js-cart-error");
@@ -113,8 +114,12 @@ import "../../styles/fonts.scss.liquid";
     return items.reduce((acc, { quantity }) => acc + quantity, 0);
   };
 
-  const calculateShippingCost = totalWeight => {
-    return Math.round(totalWeight * 0.0022046);
+  const getShippingRates = () => {
+    const z = "shipping_address%5Bzip%5D=67226";
+    const c = "shipping_address%5Bcountry%5D=US";
+    const p = "shipping_address%5Bprovince%5D=Kansas";
+
+    return $.getJSON(`/cart/shipping_rates.json?${z}&${c}&${p}`);
   };
 
   const getCartItems = () => {
@@ -138,7 +143,6 @@ import "../../styles/fonts.scss.liquid";
   };
 
   const appendCartItem = (item, id) => {
-    console.log(item);
     $("<div/>")
       .addClass("append-cart-item")
       .appendTo(".cart-items")
@@ -167,35 +171,35 @@ import "../../styles/fonts.scss.liquid";
     }
   };
 
-  const updateTotalUI = total => {
+  const updateTotalUI = (total, shippingPrice) => {
     if (total === 0) {
       $cartSubtotal.hide();
       $cartShipping.hide();
     } else {
       $cartSubtotal.show();
       $cartShipping.show();
-      $cartSubtotalCost.text(priceToCurrency(total));
+      $cartSubtotalCost.text(priceToCurrency(total + shippingPrice * 100));
     }
   };
 
-  const updateShippingUI = totalWeightInPounds => {
-    console.log(totalWeightInPounds);
-    if (totalWeightInPounds > 5) {
-      $cartShippingCost.text("$20");
-      return;
-    }
-
-    $cartShippingCost.text("$10");
+  const updateShippingUI = (name, price) => {
+    $cartShippingName.text(name);
+    $cartShippingCost.text(priceToCurrency(price * 100));
   };
 
   const updateCart = (reorderItems = true) => {
-    getCartItems().done(({ items, total_price, total_weight }) => {
-      if (reorderItems) {
-        updateItemsUI(items);
-      }
-      updateTotalUI(total_price);
-      updateCountUI(calculateCartCount(items));
-      updateShippingUI(calculateShippingCost(total_weight));
+    getShippingRates().always(resp => {
+      const { name: shippingName, price: shippingPrice } =
+        resp && resp.shipping_rates ? resp.shipping_rates[0] : {};
+
+      getCartItems().done(({ items, total_price }) => {
+        if (reorderItems) {
+          updateItemsUI(items);
+        }
+        updateTotalUI(total_price, shippingPrice);
+        updateCountUI(calculateCartCount(items));
+        updateShippingUI(shippingName, shippingPrice);
+      });
     });
   };
 
