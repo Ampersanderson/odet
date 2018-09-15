@@ -146,6 +146,7 @@ select { -webkit-appearance: menulist-button; }
 .border-bottom { border-bottom-width: 2px; border-bottom-style: solid; }
 .border-top { border-top-width: 2px; border-top-style: solid; }
 .border-box { box-sizing: border-box; }
+.border-none { border: none; }
 
 $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 
@@ -339,6 +340,7 @@ pre a,
   text-decoration: none;
   -webkit-transition: border-bottom-color .2s;
   transition: border-bottom-color .2s;
+  -webkit-transform: translate3d(0,0,0);
   &:hover {
     border-bottom-color: #222;
   }
@@ -630,7 +632,7 @@ footer {
 .pad-index-numbers {
   padding: 1rem;
   @media screen and (min-width: $break-md) {
-    padding: 2rem;
+    padding: 1.5rem 2rem;
   }
 }
 .pad-announcement {

@@ -11,8 +11,10 @@ import "../../styles/fonts.scss.liquid";
   const $trigger = $(".js-cart-trigger");
   const $headerCount = $(".js-header-count");
   const $sidebarCount = $(".js-sidebar-count");
-  const $cartSubtotal = $(".js-sidebar-subtotal");
-  const $cartTotal = $(".js-cart-total");
+  const $cartSubtotal = $(".js-subtotal");
+  const $cartSubtotalCost = $(".js-subtotal-cost");
+  const $cartShipping = $(".js-shipping");
+  const $cartShippingCost = $(".js-shipping-cost");
   const $cartForm = $(".js-cart-form");
   const $cartError = $(".js-cart-error");
   const $mobileNavOpen = $(".js-mobile-nav-open");
@@ -111,6 +113,10 @@ import "../../styles/fonts.scss.liquid";
     return items.reduce((acc, { quantity }) => acc + quantity, 0);
   };
 
+  const calculateShippingCost = totalWeight => {
+    return Math.round(totalWeight * 0.0022046);
+  };
+
   const getCartItems = () => {
     return $.getJSON("/cart.js");
   };
@@ -132,6 +138,7 @@ import "../../styles/fonts.scss.liquid";
   };
 
   const appendCartItem = (item, id) => {
+    console.log(item);
     $("<div/>")
       .addClass("append-cart-item")
       .appendTo(".cart-items")
@@ -156,22 +163,39 @@ import "../../styles/fonts.scss.liquid";
       $viewCart.hide();
       $shopCollection.show();
       $headerCount.hide();
-      $cartSubtotal.hide();
       $sidebarCount.text("0 Items in Cart");
     }
   };
 
   const updateTotalUI = total => {
-    $cartTotal.text(total);
+    if (total === 0) {
+      $cartSubtotal.hide();
+      $cartShipping.hide();
+    } else {
+      $cartSubtotal.show();
+      $cartShipping.show();
+      $cartSubtotalCost.text(priceToCurrency(total));
+    }
+  };
+
+  const updateShippingUI = totalWeightInPounds => {
+    console.log(totalWeightInPounds);
+    if (totalWeightInPounds > 5) {
+      $cartShippingCost.text("$20");
+      return;
+    }
+
+    $cartShippingCost.text("$10");
   };
 
   const updateCart = (reorderItems = true) => {
-    getCartItems().done(({ items, total_price }) => {
+    getCartItems().done(({ items, total_price, total_weight }) => {
       if (reorderItems) {
         updateItemsUI(items);
       }
-      updateTotalUI(priceToCurrency(total_price));
+      updateTotalUI(total_price);
       updateCountUI(calculateCartCount(items));
+      updateShippingUI(calculateShippingCost(total_weight));
     });
   };
 
