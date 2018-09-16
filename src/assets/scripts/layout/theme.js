@@ -194,7 +194,7 @@ import "../../styles/fonts.scss.liquid";
         updateItemsUI(items);
       }
 
-      updateShippingUI(shippingCost);
+      updateTotalUI(total_price);
       updateCountUI(calculateCartCount(items));
 
       getShippingRates()
