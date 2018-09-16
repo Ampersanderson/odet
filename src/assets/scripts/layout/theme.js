@@ -14,6 +14,7 @@ import "../../styles/fonts.scss.liquid";
   const $cartSubtotal = $(".js-subtotal");
   const $cartSubtotalCost = $(".js-subtotal-cost");
   const $cartShipping = $(".js-shipping");
+  const $cartShippingName = $(".js-shipping-name");
   const $cartShippingCost = $(".js-shipping-cost");
   const $cartForm = $(".js-cart-form");
   const $cartError = $(".js-cart-error");
@@ -113,18 +114,12 @@ import "../../styles/fonts.scss.liquid";
     return items.reduce((acc, { quantity }) => acc + quantity, 0);
   };
 
-  const calculateShippingCost = totalWeight => {
-    const pounds = Math.round(totalWeight * 0.0022046);
+  const getShippingRates = () => {
+    const z = "shipping_address%5Bzip%5D=67226";
+    const c = "shipping_address%5Bcountry%5D=US";
+    const p = "shipping_address%5Bprovince%5D=Kansas";
 
-    if (pounds > 0 && pounds < 5) {
-      return 10;
-    }
-
-    if (pounds > 5) {
-      return 20;
-    }
-
-    return 0;
+    return $.getJSON(`/cart/shipping_rates.json?${z}&${c}&${p}`);
   };
 
   const getCartItems = () => {
@@ -187,22 +182,32 @@ import "../../styles/fonts.scss.liquid";
     }
   };
 
-  const updateShippingUI = shippingCost => {
-    $cartShippingCost.text(priceToCurrency(shippingCost * 100));
+  const updateShippingUI = (name, price, total) => {
+    $cartShippingName.text(name);
+    $cartShippingCost.text(priceToCurrency(price * 100));
+    $cartSubtotalCost.text(priceToCurrency(total + price * 100));
   };
 
   const updateCart = (reorderItems = true) => {
-    getCartItems().done(({ items, total_price, total_weight }) => {
-      const shippingCost = calculateShippingCost(total_weight);
-
+    getCartItems().done(({ items, total_price }) => {
       if (reorderItems) {
         updateItemsUI(items);
       }
 
       updateShippingUI(shippingCost);
       updateCountUI(calculateCartCount(items));
-      console.log(total_price + shippingCost * 100);
-      updateTotalUI(total_price + shippingCost * 100);
+
+      getShippingRates()
+        .done(({ shipping_rates }) => {
+          const { name: shippingName, price: shippingPrice } = shipping_rates
+            ? shipping_rates[0]
+            : {};
+
+          updateShippingUI(shippingName, shippingPrice, total_price);
+        })
+        .fail(() => {
+          updateTotalUI(0);
+        });
     });
   };
 
