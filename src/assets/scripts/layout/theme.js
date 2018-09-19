@@ -363,7 +363,7 @@ import "../../styles/fonts.scss.liquid";
     const isOverflowing =
       $productDetails.outerHeight() + $desktopHeader.height() >
       $(window).height();
-    console.log(isOverflowing);
+
     if (isOverflowing) {
       $productDetails.removeClass("sticky");
     } else {
