@@ -8,7 +8,7 @@
 {% endif %}
 <form class="js-cart-form" action="/cart/add" method="post" enctype="multipart/form-data">
   <div class="flex items-center mb1">
-    <div class="hover-placeholder relative w50p black">
+    <div class="relative w50p black {% if available == true %}hover-placeholder{% endif %}">
       <div class="placeholder border bembo {% if available != true %}gray{% endif %}">
         <div class="p1 flex items-center justify-center">
           <span>Size</span>
@@ -16,7 +16,7 @@
         </div>
       </div>
       {% if available %}
-        <select name="id" class="absolute t0 l0 w100p h100p o0p pointer">
+        <select name="id" class="absolute t0 l0 w100p h100p o0p {% if available == true %}pointer{% endif %}">
           <option value="Size" disabled selected>Size</option>
           {% for variant in product.variants %}
             {% if variant.available == true %}
@@ -37,13 +37,13 @@
       {% endif %}
     </div>
     <span class="pl1"></span>
-    <div class="hover-placeholder relative w50p black">
+    <div class="relative w50p black {% if available == true %}hover-placeholder{% endif %}">
       <div class="placeholder p1 border flex items-center justify-center bembo {% if available != true %}gray{% endif %}">
         <span>Qty</span>
         <div class="arrow-down"></div>
       </div>
       {% if available %}
-        <select name="quantity" class="absolute t0 l0 w100p h100p o0p pointer">
+        <select name="quantity" class="absolute t0 l0 w100p h100p o0p {% if available == true %}pointer{% endif %}">
           <option value="Qty" disabled selected>Qty</option>
           <option value="1">1</option>
           <option value="2">2</option>
