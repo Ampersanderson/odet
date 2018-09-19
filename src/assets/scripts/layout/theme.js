@@ -401,14 +401,17 @@ import "../../styles/fonts.scss.liquid";
     }
   };
 
+  let stuck = false;
   const stickProductDetails = () => {
     const offsetTop = $(window).scrollTop();
     const PONR = $productWrapper.height() - $productDetails.outerHeight();
 
-    if (offsetTop > PONR) {
+    if (!stuck && offsetTop >= PONR) {
+      stuck = false;
       reattachProductDetails();
       positionDetailsAbsoluteBottom();
-    } else {
+    } else if (stuck && offsetTop < PONR) {
+      stuck = true;
       detachProductDetails();
       positionDetailsFixed();
     }
