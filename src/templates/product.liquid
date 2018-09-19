@@ -1,13 +1,13 @@
 <div class="show-md">
-  <div class="js-product-wrapper overflow-hidden main-height relative {% if settings.display_announcement_banner %}banner-showing{% endif %}">
-    <div class="product-images left main-height">
+  <div class="js-product-wrapper">
+    <div class="product-images left">
       {% for image in product.images limit:2 %}
         <div class="h100p overflow-hidden bg-smoke mb1">
           <div class="image bg-center bg-cover fade-image" style="padding-top: 125%;" data-img="{{ image | img_url: '1024x' }}"></div>
         </div>
       {% endfor %}
     </div>
-    <div class="js-product-details product-details transform-details">
+    <div class="product-details right sticky t4">
       <div class="w60p mx-auto">
         {% include 'product-details' %}
       </div>

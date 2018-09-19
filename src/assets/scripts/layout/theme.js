@@ -20,7 +20,7 @@ import "../../styles/fonts.scss.liquid";
   const $cartError = $(".js-cart-error");
   const $mobileNavOpen = $(".js-mobile-nav-open");
   const $mobileNavClose = $(".js-mobile-nav-close");
-  const $productDetails = $(".js-product-details");
+  const $productDetails = $(".product-details");
   const $productWrapper = $(".js-product-wrapper");
   const $detailsTab = $(".js-details-tab");
   const $mobileHeader = $(".js-header.hide-md");
@@ -359,73 +359,19 @@ import "../../styles/fonts.scss.liquid";
     $mobileNav.removeClass("open");
   });
 
-  const positionDetailsFixed = () => {
-    $productDetails
-      .css({
-        top: $desktopHeader.height(),
-        bottom: "auto",
-        position: "fixed"
-      })
-      .addClass("transform-details");
-  };
-
-  const positionDetailsAbsoluteTop = () => {
-    $productDetails.css({
-      top: 0,
-      bottom: "auto",
-      position: "absolute"
-    });
-  };
-
-  const positionDetailsAbsoluteBottom = () => {
-    $productDetails
-      .css({
-        bottom: 0,
-        top: "auto",
-        position: "absolute"
-      })
-      .removeClass("transform-details");
-  };
-
   const positionProductDetails = () => {
     const isOverflowing =
       $productDetails.outerHeight() + $desktopHeader.height() >
       $(window).height();
-
+    console.log(isOverflowing);
     if (isOverflowing) {
-      reattachProductDetails();
-      positionDetailsAbsoluteTop();
+      $productDetails.removeClass("sticky");
     } else {
-      detachProductDetails();
-      positionDetailsFixed();
+      $productDetails.addClass("sticky");
     }
   };
 
-  let stuck = false;
-  const stickProductDetails = () => {
-    const offsetTop = $(window).scrollTop();
-    const PONR = $productWrapper.height() - $productDetails.outerHeight();
-
-    if (!stuck && offsetTop >= PONR) {
-      stuck = false;
-      reattachProductDetails();
-      positionDetailsAbsoluteBottom();
-    } else if (stuck && offsetTop < PONR) {
-      stuck = true;
-      detachProductDetails();
-      positionDetailsFixed();
-    }
-  };
-
-  const detachProductDetails = () => {
-    const $details = $productDetails.detach();
-    $body.append($details);
-  };
-
-  const reattachProductDetails = () => {
-    const $details = $productDetails.detach();
-    $productWrapper.append($details);
-  };
+  $productWrapper.css("height", $(".product-images").height());
 
   $(".js-close-announcement").on("click", e => {
     e.preventDefault();
@@ -482,13 +428,6 @@ import "../../styles/fonts.scss.liquid";
 
   $(window).on("scroll", () => {
     fadeInImage();
-
-    if (breakpoint() === "sm") {
-      return;
-    }
-
-    positionProductDetails();
-    stickProductDetails();
   });
 
   $(window).on("load", () => {
@@ -500,7 +439,6 @@ import "../../styles/fonts.scss.liquid";
     }
 
     positionProductDetails();
-    stickProductDetails();
   });
 
   $(window).on("resize", () => {
@@ -509,6 +447,5 @@ import "../../styles/fonts.scss.liquid";
     }
 
     positionProductDetails();
-    stickProductDetails();
   });
 })(jQuery);
