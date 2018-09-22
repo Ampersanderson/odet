@@ -338,7 +338,7 @@ import "../../styles/fonts.scss.liquid";
       if ($image.parent().is("p")) {
         $image.unwrap();
         $image.wrap(
-          '<div class="js-img-wrapper text-center"><div class="inline-block"></div></div>'
+          '<div class="img-wrapper text-center"><div class="inline-block"></div></div>'
         );
         $image.after(`<span class="block text-left mx-auto h5">${alt}</span>`);
       }

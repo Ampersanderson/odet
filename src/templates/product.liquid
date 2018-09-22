@@ -3,7 +3,7 @@
     <div class="product-images left">
       {% for image in product.images limit:2 %}
         <div class="h100p overflow-hidden bg-smoke mb1">
-          <div class="image bg-center bg-cover fade-image" style="padding-top: 125%;" data-img="{{ image | img_url: '1024x' }}"></div>
+          <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '1024x' }}"></div>
         </div>
       {% endfor %}
     </div>
@@ -15,7 +15,7 @@
   </div>
   {% for image in product.images offset:2 limit:1 %}
     <div class="h100p overflow-hidden bg-smoke mb1">
-      <div class="image bg-center bg-cover fade-image" style="padding-top: 125%;" data-img="{{ image | img_url: '2048x' }}"></div>
+      <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '2048x' }}"></div>
     </div>
   {% endfor %}
   <div class="grid">
@@ -25,7 +25,7 @@
   </div>
   {% for image in product.images offset:3 %}
     <div class="h100p overflow-hidden bg-smoke mb1">
-      <div class="image bg-center bg-cover fade-image" style="padding-top: 125%;" data-img="{{ image | img_url: '2048x' }}"></div>
+      <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '2048x' }}"></div>
     </div>
   {% endfor %}
   {% include 'product-ctas' %}
@@ -33,7 +33,7 @@
 <div class="hide-md">
   {% for image in product.images limit:1 %}
     <div class="h100p overflow-hidden bg-smoke mb1">
-      <div class="image bg-center bg-cover fade-image" style="padding-top: 125%;" data-img="{{ image | img_url: '1024x' }}"></div>
+      <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '1024x' }}"></div>
     </div>
   {% endfor %}
   <div class="grid pt1 pb3">
@@ -41,7 +41,7 @@
   </div>
   {% for image in product.images offset:1 %}
     <div class="h100p overflow-hidden bg-smoke mb1">
-      <div class="image bg-center bg-cover fade-image" style="padding-top: 125%;" data-img="{{ image | img_url: '1024x' }}"></div>
+      <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '1024x' }}"></div>
     </div>
   {% endfor %}
   {% include 'product-ctas' %}
