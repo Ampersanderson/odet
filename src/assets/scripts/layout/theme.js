@@ -371,7 +371,9 @@ import "../../styles/fonts.scss.liquid";
     }
   };
 
-  $productWrapper.css("height", $(".product-images").height());
+  const setProductImagesHeight = () => {
+    $productWrapper.css("height", $(".product-images").height());
+  };
 
   $(".js-close-announcement").on("click", e => {
     e.preventDefault();
@@ -438,6 +440,7 @@ import "../../styles/fonts.scss.liquid";
       return;
     }
 
+    setProductImagesHeight();
     positionProductDetails();
   });
 
@@ -446,6 +449,7 @@ import "../../styles/fonts.scss.liquid";
       return;
     }
 
+    setProductImagesHeight();
     positionProductDetails();
   });
 })(jQuery);
